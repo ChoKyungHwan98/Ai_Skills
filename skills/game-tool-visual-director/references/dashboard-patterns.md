@@ -1,6 +1,10 @@
 # Dashboard and tool patterns
 
-Use these patterns to propose structure after the decision and evidence are clear. They are starting arrangements, not templates to impose on every screen.
+Use these patterns to propose structure after the task or decision and first-glance target are clear. They are starting arrangements, not templates to impose on every screen.
+
+## Reason about grouping
+
+Start with context already available in the product, screen, data, and user request. Group and order information by the user's task and language rather than by implementation boundaries. Consider frequency of use, expertise, time pressure, and existing product constraints only where they change the grouping, density, or reading order. Explain the reason for a proposed group. Ask for missing context only when different answers would lead to meaningfully different structures; do not turn these factors into a fixed interview.
 
 ## Conclusion → evidence → explanation → details
 
@@ -42,8 +46,8 @@ Separate user input, generated suggestion, supporting evidence, and approval or 
 
 - Merge cards when they express parts of one decision or comparison.
 - Remove a card when it repeats an already visible fact without adding context or action.
-- Enlarge the evidence that carries the first-second message; shrink setup or metadata.
-- Move secondary analysis below the primary conclusion, or behind a deliberate detail control.
+- Enlarge the evidence that carries the first-glance target; shrink setup or metadata.
+- Move secondary analysis below the primary content, or behind a deliberate detail control.
 - Use annotation to connect a visible data point to its implication.
 - Keep dense tables when exact scanning is central; improve sorting and emphasis instead of converting every row into a card.
 - Preserve meaningful navigation and task state when changing layout.

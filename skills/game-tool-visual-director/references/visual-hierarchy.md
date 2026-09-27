@@ -4,13 +4,13 @@ Use this reference when the screen feels “off,” dense, or visually flat, and
 
 ## Diagnose attention, not taste
 
-At the target viewport, look away, then glance for 1–3 seconds. Record the first item noticed and the conclusion retained. Compare both with the Visual Intent. Repeat at a normal reading distance and at a narrow viewport if that viewport matters. Do not assume that a large element communicates the right idea; a large chart with no framing can dominate while conveying no takeaway.
+At the target viewport, look away, then glance for 1–3 seconds. Record the first item noticed and what the viewer can recognize. Compare both with the Visual Intent. Repeat at a normal reading distance and at a narrow viewport if that viewport matters. Do not assume that a large element communicates the right idea; a large chart with no framing can dominate while conveying no takeaway.
 
 Separate these questions:
 
 | Question | Signal of failure | Useful change |
 | --- | --- | --- |
-| What is this screen for? | The title names a feature, but no decision or status is apparent. | Lead with a decision-oriented heading or concise annotated conclusion. |
+| What is this screen for? | The title names a feature, but the task, active state, or decision is unclear. | Give the relevant first-glance target a clear lead. |
 | Where should I look first? | Several cards have equal size, contrast, and heading weight. | Give one region clear priority; reduce emphasis elsewhere. |
 | Why should I believe the conclusion? | Evidence is far from the claim or hidden in tooltips. | Place the relevant measure, comparison, and caveat beside the claim. |
 | What should I do next? | Controls compete with evidence or appear before context. | Put the primary action near the decision; move setup controls to a calmer area. |
@@ -25,6 +25,19 @@ Separate these questions:
 - “정보만 모아둔 것 같아” (“It feels like a pile of information”): locate the missing conclusion, grouping, prioritization, or decision path. Consolidate or remove repetitive cards.
 
 These are hypotheses to test against the actual screen, not automatic diagnoses.
+
+## Trace consequential diagnoses
+
+When a finding drives a structural change or its cause needs explanation, keep observation separate from interpretation:
+
+```text
+Observation: What is visible in the inspected screen and state?
+User impact: What does this delay, obscure, or make harder for the viewer?
+Hypothesis: Why might the observed design cause that impact?
+Change to test: What change should produce a clearer result in the next render?
+```
+
+Use this trace for major decisions, not every minor alignment or spacing issue. Do not present a hypothesis as an observed fact.
 
 ## Build an attention order
 
@@ -44,4 +57,4 @@ Position establishes reading order; size signals priority; contrast and isolatio
 
 ## Reduce text dependency
 
-Replace prose that explains a visible comparison with a direct label, reference line, annotated data point, or aligned values. Put the conclusion near its evidence so the viewer can verify it without searching. Keep short explanations for causes, assumptions, and uncertainty that the visual cannot express. Test the 1–3 second impression again with body copy unread: the viewer should still grasp the primary message.
+Replace prose that explains a visible comparison with a direct label, reference line, annotated data point, or aligned values. Put a claim near its evidence so the viewer can verify it without searching. Keep short explanations for causes, assumptions, and uncertainty that the visual cannot express. Test the 1–3 second impression again with body copy unread: the viewer should still grasp the first-glance target.

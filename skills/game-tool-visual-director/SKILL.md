@@ -9,7 +9,7 @@ Treat each screen as a communication problem before treating it as a styling pro
 
 ## 1. Inspect without editing
 
-Inspect the current screenshot or rendered screen, relevant code and layout, available data and definitions, target viewport, and the user's goal. Identify the viewer and the decision the screen supports. If an input is unavailable, state the assumption or limitation; do not invent data or infer the rendered result from code alone. For critique-only work, this and the following design stages are the deliverable.
+Inspect the current screenshot or rendered screen, relevant code and layout, available data and definitions, target viewport, and the user's goal. Identify the viewer and the decision or task the screen supports. If an input is unavailable, state the assumption or limitation; do not invent data or infer the rendered result from code alone. For critique-only work, this and the following design stages are the deliverable.
 
 ## 2. Diagnose the communication failure
 
@@ -47,7 +47,7 @@ Before implementation, describe the proposed screen in reading order: what leads
 
 ## 6. Implement when requested
 
-Only after diagnosis, Visual Intent, visualization choice, and layout structure are explicit, modify the application. Preserve correct data, definitions, and important behavior. Check chart semantics, labels, units, interaction states, and accessibility as part of the implementation. A request for critique or direction alone does not authorize code changes.
+Only after diagnosis, Visual Intent, visualization choice, and layout structure are explicit, modify the application. Preserve correct data, definitions, and important behavior. Check chart semantics, labels, units, interaction states, and accessibility as part of the implementation. When those changes raise accessibility questions, use [minimal accessibility checks](references/accessibility-checks.md) during implementation or rendered critique. A request for critique or direction alone does not authorize code changes.
 
 ## 7. Critique the rendered result and revise
 

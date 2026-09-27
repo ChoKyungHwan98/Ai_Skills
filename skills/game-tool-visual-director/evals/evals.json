@@ -1,0 +1,67 @@
+{
+  "skill_name": "game-tool-visual-director",
+  "evaluation_note": "Judge the decisions and actions described by the response, not exact wording or heading matches. Scenario descriptions are inputs, not substitutes for rendered screenshots.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "steam-review-analytics-polish",
+      "prompt": "A Steam review analytics dashboard shows several equally prominent KPI cards, a sentiment donut, and a scatter plot. A product analyst needs to decide which recent game update deserves investigation. The user says: 시각화 좀 폴리싱해줘. Diagnose the screen and propose a direction from this description.",
+      "expected_behavior": [
+        "Identify the viewer's decision and the intended first-glance target before proposing styling changes.",
+        "Diagnose competing emphasis and ask what question each existing chart answers.",
+        "Treat color, shadows, and spacing as secondary to information structure and chart suitability.",
+        "Acknowledge that rendered appearance cannot be verified from the description alone."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "editor-first-glance-target",
+      "prompt": "A pattern editor has a canvas, an active node, relation lines, a tool palette, and an inspector. The active node and its editable state are hard to locate. The user says: 이 화면 한눈에 안 들어와. Diagnose the screen and state Visual Intent from this description.",
+      "expected_behavior": [
+        "Choose a first-glance target from the active object, state, relationship, or next action according to the editing task.",
+        "Explain how competing regions or grouping obscure that target.",
+        "Do not invent an analytical conclusion for the editor."
+      ]
+    },
+    {
+      "id": 3,
+      "name": "critique-only-boundary",
+      "prompt": "An information-heavy planning screen has equal-weight cards and a crowded side panel. The user says: 문제만 분석해줘. 수정하지 마. Provide a critique from this description.",
+      "expected_behavior": [
+        "Diagnose the communication and hierarchy problems within the available evidence.",
+        "May state Visual Intent or proposed direction, clearly separated from implementation.",
+        "Do not edit application files or claim that a rendered change was verified."
+      ]
+    },
+    {
+      "id": 4,
+      "name": "premium-cosmetic-trap",
+      "prompt": "An analytics tool places every metric in an equally sized card and buries the comparison needed for a decision. The user says: 좀 더 고급스럽게 해줘. Diagnose the screen before suggesting changes.",
+      "expected_behavior": [
+        "Determine whether the layout, grouping, or emphasis causes the perceived lack of quality.",
+        "State what should lead the screen and which evidence belongs beside it.",
+        "Do not begin with gradients, shadows, or a style palette."
+      ]
+    },
+    {
+      "id": 5,
+      "name": "protect-expert-density",
+      "prompt": "Expert planners use a dense editor every day. Its compact table keeps related values visible for rapid comparison, but the active selection is difficult to find. The user asks for a redesign. Diagnose and propose a structure from this description.",
+      "expected_behavior": [
+        "Recognize that simultaneous visibility and compact comparison may be worth protecting.",
+        "Record the useful density or grouping as a decision to preserve, with its task-based reason.",
+        "Improve the active-selection hierarchy without assuming more whitespace or fewer values is better."
+      ]
+    },
+    {
+      "id": 6,
+      "name": "before-after-hierarchy-regression",
+      "prompt": "You are given these observations from two captures at the same viewport with the same data and selected state. Before: the current alert and its supporting metric are visible immediately. After: refined typography and color look more polished, but a large decorative summary pushes the alert and metric farther down. Decide PASS or NEEDS REVISION and explain why.",
+      "expected_behavior": [
+        "Judge the first-glance target and reading path against the described before state without claiming to have inspected the captures directly.",
+        "Mark NEEDS REVISION because the critical information is recognized later despite improved styling.",
+        "Identify the hierarchy regression and a concrete change to test without claiming that appearance alone proves improvement."
+      ]
+    }
+  ]
+}

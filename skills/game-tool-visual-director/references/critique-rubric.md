@@ -16,12 +16,36 @@ Record **PASS** only when the rendered screen communicates the intended first-gl
 | Interaction | Is the next action clear, and is the effect of controls predictable? | Control placement, states, feedback, progressive disclosure |
 | Cosmetic styling | Does styling reinforce the established structure? | Type, contrast, spacing, alignment, color semantics |
 
+## Explain major findings
+
+When a diagnosis or revision needs a clear rationale, record:
+
+```text
+Observation: What the inspected screen shows.
+User impact: What becomes harder for this viewer.
+Hypothesis: The likely design cause, distinguished from observation.
+Change to test: The change and the result to look for after rendering.
+```
+
+Use this for consequential findings, not every small flaw. Revisit the hypothesis after rendering; a different-looking screen does not prove the cause was addressed.
+
+## Protect working decisions
+
+If a redesign might erase something useful, record:
+
+```text
+Protect: The existing decision to keep.
+Reason: The task or context it serves.
+```
+
+Useful information density, effective grouping, familiar terminology, clear interaction states, and valuable context should not be removed merely to simplify the screen. Check their survival in the rendered result.
+
 ## Rendered-screen pass
 
 1. View the screen at the target viewport without reading every sentence. Write the first thing noticed and what was recognized after 1–3 seconds.
 2. Trace the eye from that first point to the evidence and next action. Note jumps, dead ends, and equal-weight competition.
 3. Check each chart against its stated analytical question. Look for distorted scales, missing units, weak labels, and decorative visuals.
-4. Identify one element to remove or de-emphasize. If nothing can be removed, explain what each prominent element contributes.
+4. Identify one element to remove or de-emphasize and any existing decision to protect. If nothing can be removed, explain what each prominent element contributes.
 5. Check the target viewport and relevant interaction states, including empty, loading, error, selected, and narrow layouts when those states matter to the task.
 
 The rendered pass should answer explicitly: What appears first? Is that the intended first-glance target? Can it be recognized without reading the explanation? Are claim and evidence adjacent where relevant? Are elements competing? Does each chart answer a clear question? What can be removed? Does the target viewport work?
@@ -37,7 +61,7 @@ A redesign is not an improvement merely because it looks different.
 Classify each finding by consequence, not by how easy it is to fix:
 
 - **Blocking:** The screen suggests the wrong decision, misrepresents data, hides a critical action, or fails at the target viewport.
-- **Major:** The message is hard to grasp, evidence is detached from the conclusion, or competing elements obscure the reading order.
+- **Major:** The first-glance target is hard to grasp, evidence is detached from a claim, or competing elements obscure the reading order.
 - **Minor:** Meaning is clear, but labeling, spacing, alignment, or finish slows comprehension.
 
 Address blocking and major issues before cosmetic ones. For each revision, state the observed problem, its effect on the viewer, the proposed change, and what the next render should prove. Do not call the work complete because the code compiles or because colors and spacing improved. If a rendered view cannot be inspected, report visual verification as incomplete.
