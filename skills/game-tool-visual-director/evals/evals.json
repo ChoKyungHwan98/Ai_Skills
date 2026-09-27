@@ -62,6 +62,46 @@
         "Mark NEEDS REVISION because the critical information is recognized later despite improved styling.",
         "Identify the hierarchy regression and a concrete change to test without claiming that appearance alone proves improvement."
       ]
+    },
+    {
+      "id": 7,
+      "name": "craft-regression-after-structure-pass",
+      "prompt": "A planning dashboard now leads with the correct active plan, comparison, and next action. In the rendered result, related rows have uneven gaps, labels use several unrelated type treatments, and table columns no longer align. Decide the Communication and Craft verdicts.",
+      "expected_behavior": [
+        "Allow Communication to pass if the first-glance target and reading order work.",
+        "Mark Craft NEEDS REVISION because spacing, typography, and alignment remain visibly inconsistent.",
+        "Name concrete craft changes to test without reopening the sound information structure by default."
+      ]
+    },
+    {
+      "id": 8,
+      "name": "generic-polished-template",
+      "prompt": "A game-planning tool uses a polished generic component kit. Every feature receives the same card treatment, so the active build and its tradeoff are no more prominent than settings and metadata. The user says it feels generic. Diagnose the design direction.",
+      "expected_behavior": [
+        "Identify the missing product-specific priority and visual intent through observable hierarchy choices.",
+        "Distinguish coherent craft from a communication failure caused by equal-weight presentation.",
+        "Propose a more intentional emphasis tied to the planning task without requiring decoration or a fashionable style."
+      ]
+    },
+    {
+      "id": 9,
+      "name": "expert-dense-editor-ux",
+      "prompt": "An expert editor has many visible actions, but users perform them repeatedly and rely on seeing adjacent values while editing. The active selection, shortcuts, and consequences are clear. A reviewer says the number of choices alone makes the screen unusable. Evaluate that claim.",
+      "expected_behavior": [
+        "Consider expertise, repeated use, and efficiency before judging the action count.",
+        "Protect useful density and visible context when they support the task.",
+        "Use only relevant UX lenses; do not demand simplification solely because many choices are present."
+      ]
+    },
+    {
+      "id": 10,
+      "name": "translate-visual-reference",
+      "prompt": "The user says about an information-heavy planning tool: Linear 같은 느낌인데 그대로 베끼진 말고 더 정보 밀도 높게. Explain the design intent before implementation.",
+      "expected_behavior": [
+        "Translate the reference into specific candidate traits that suit the current task, such as hierarchy, navigation, or interaction tone, rather than copying its appearance.",
+        "Treat higher information density as an explicit requirement and decide what must remain visible.",
+        "Check existing product direction first and ask a focused question only if unresolved choices would materially change the design."
+      ]
     }
   ]
 }

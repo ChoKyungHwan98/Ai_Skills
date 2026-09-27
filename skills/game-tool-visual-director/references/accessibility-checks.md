@@ -1,12 +1,26 @@
-# Minimal accessibility checks
+# Accessibility and production quality checks
 
-Use this reference only when a redesign affects meaning, labels, states, interactive visuals, reading order, narrow layouts, or chart access. This is a focused check against regressions in the changed screen, not a full accessibility audit.
+Use the relevant checks when a redesign affects controls, meaning, data views, or responsive layout. This guards the changed screen's quality; it is not a full accessibility audit or a universal component checklist.
 
-- **Meaning beyond color:** Can the viewer distinguish status, category, and emphasis without relying on hue alone?
-- **Labels and states:** Are controls, selected items, loading or error states, and their consequences understandable in context?
-- **Interactive visuals:** If a chart or canvas can be focused or selected, is that state visible and usable through the relevant input methods?
-- **Reading order:** Does the visual sequence remain sensible when navigated in reading or focus order?
-- **Narrow layout:** When panels stack or charts simplify, are the first-glance target, its context, and the next action still clear?
-- **Chart alternative:** When exact values or the pattern matter beyond the visual rendering, is a useful text summary or table available?
+## Interaction and state
 
-Check only the items affected by the change. A screenshot cannot prove keyboard or assistive-technology behavior; inspect the live interaction or code when those behaviors matter, and mark anything unverified.
+- Are selected, hover, pressed, and disabled states distinguishable and consistent where they exist?
+- Do loading, error, and empty states explain what is happening and what the viewer can do next?
+- Do ambiguous controls have understandable labels or help, and do controls behave as their appearance suggests?
+- Can interactive charts, canvases, or controls be focused and selected through relevant input methods, including keyboard use when applicable?
+
+## Responsive information
+
+- When panels stack, does the first-glance target still precede its supporting context and next action?
+- Are overflow, long labels, and dense tables handled without silently hiding important values?
+- Do charts remain readable at the target narrow viewport, or change representation while preserving the analytical question?
+- Is the visual reading order still logical in navigation and focus order?
+
+## Data, color, and motion
+
+- Do numeric values align for comparison, and are labels and long text legible without an inconsistent type hierarchy?
+- Does color have stable semantic meaning, with important states distinguishable without color alone?
+- When chart meaning or exact values would otherwise be lost, is a useful text summary or table available?
+- Does motion communicate a state change or relationship? Remove decorative motion that delays repeated professional work.
+
+Check only what the change can affect. Use platform and accessibility standards when a numerical threshold is actually needed; do not invent a universal value here. A screenshot cannot prove keyboard, assistive-technology, or motion behavior. Inspect the live interaction or code when relevant and mark unverified behavior honestly.

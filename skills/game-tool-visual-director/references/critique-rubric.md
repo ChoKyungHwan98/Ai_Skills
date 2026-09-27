@@ -4,7 +4,12 @@ Use this rubric for the initial diagnosis and again on a rendered screenshot aft
 
 ## Verdict
 
-Record **PASS** only when the rendered screen communicates the intended first-glance target, connects it to supporting evidence where relevant, supports the decision or task, and works at the target viewport. Record **NEEDS REVISION** if any of those conditions fail. Do not use a numeric score. Give the observed reason and the next change to test.
+Give two separate verdicts from the rendered screen:
+
+- **Communication — PASS / NEEDS REVISION:** Check the first-glance target, reading order, information hierarchy, chart choice, and clarity of the task or decision.
+- **Craft — PASS / NEEDS REVISION:** Check alignment, typography, spacing rhythm, useful density, state clarity, visual coherence, and contextual fit. Use [visual craft](visual-craft.md) when this judgment needs detail.
+
+The overall verdict is **PASS** only when both layers pass and no relevant interaction or accessibility regression remains. A well-structured but visibly unfinished screen needs revision; so does a beautiful screen with the wrong hierarchy. Give the observed reason and the next change to test. Do not use a numeric score or claim PASS from source code alone.
 
 ## Review prompts
 
@@ -14,7 +19,7 @@ Record **PASS** only when the rendered screen communicates the intended first-gl
 | Visualization | Does each visual answer a named question more clearly than a simpler form? | Question, chart choice, labels, scales, missing context |
 | Visual hierarchy | What attracts attention first, and is it the intended message? | First glance result, competing elements, primary/secondary/tertiary distinction |
 | Interaction | Is the next action clear, and is the effect of controls predictable? | Control placement, states, feedback, progressive disclosure |
-| Cosmetic styling | Does styling reinforce the established structure? | Type, contrast, spacing, alignment, color semantics |
+| Visual craft | Is the execution coherent and appropriate for the task? | Type, spacing, alignment, density, contrast, color, borders, elevation |
 
 ## Explain major findings
 
@@ -28,6 +33,7 @@ Change to test: The change and the result to look for after rendering.
 ```
 
 Use this for consequential findings, not every small flaw. Revisit the hypothesis after rendering; a different-looking screen does not prove the cause was addressed.
+When an interaction lens clarifies the cause, add **Relevant principle** between User impact and Hypothesis; do not cite principles mechanically.
 
 ## Protect working decisions
 
@@ -47,12 +53,15 @@ Useful information density, effective grouping, familiar terminology, clear inte
 3. Check each chart against its stated analytical question. Look for distorted scales, missing units, weak labels, and decorative visuals.
 4. Identify one element to remove or de-emphasize and any existing decision to protect. If nothing can be removed, explain what each prominent element contributes.
 5. Check the target viewport and relevant interaction states, including empty, loading, error, selected, and narrow layouts when those states matter to the task.
+6. Give separate Communication and Craft verdicts, including any visible misalignment, type inconsistency, spacing drift, or unsuitable density.
 
 The rendered pass should answer explicitly: What appears first? Is that the intended first-glance target? Can it be recognized without reading the explanation? Are claim and evidence adjacent where relevant? Are elements competing? Does each chart answer a clear question? What can be removed? Does the target viewport work?
 
 ## Before / After Proof
 
 When a previous screen exists, compare before and after at the same viewport with the same data and state. Verify whether the first-glance target is clearer, the reading path is shorter, competing emphasis is reduced, the relationship between claim and evidence has improved, and important information has not been lost. Check whether the diagnosed problems were resolved or only the styling changed.
+
+Also check whether craft became more coherent without weakening a protected visual decision, interaction state, or the screen's communication.
 
 A redesign is not an improvement merely because it looks different.
 
@@ -61,7 +70,7 @@ A redesign is not an improvement merely because it looks different.
 Classify each finding by consequence, not by how easy it is to fix:
 
 - **Blocking:** The screen suggests the wrong decision, misrepresents data, hides a critical action, or fails at the target viewport.
-- **Major:** The first-glance target is hard to grasp, evidence is detached from a claim, or competing elements obscure the reading order.
+- **Major:** The first-glance target is hard to grasp, evidence is detached from a claim, competing elements obscure the reading order, or visual execution is plainly inconsistent despite sound structure.
 - **Minor:** Meaning is clear, but labeling, spacing, alignment, or finish slows comprehension.
 
 Address blocking and major issues before cosmetic ones. For each revision, state the observed problem, its effect on the viewer, the proposed change, and what the next render should prove. Do not call the work complete because the code compiles or because colors and spacing improved. If a rendered view cannot be inspected, report visual verification as incomplete.

@@ -1,6 +1,6 @@
 ---
 name: game-tool-visual-director
-description: Diagnose and redesign information-heavy game planning tools, analytics dashboards, editors, portfolio tools, and AI-assisted productivity interfaces. Use when feedback is vague (such as “뭔가 이상해”, “직관적이지 않아”, “시각화가 부족해”, “폴리싱해줘”, or “정보만 모아둔 것 같아”) or when a screen needs clearer visual direction, information hierarchy, or visualization choices. For critique-only requests, stop before implementation.
+description: Diagnose and redesign information-heavy game planning tools, analytics dashboards, editors, portfolio tools, and AI-assisted productivity interfaces. Use when feedback is vague (such as “뭔가 이상해”, “직관적이지 않아”, “시각화가 부족해”, “폴리싱해줘”, or “정보만 모아둔 것 같아”) or when a screen needs clearer visual direction, information hierarchy, visualization choices, or visual craft. For critique-only requests, stop before implementation.
 ---
 
 # Game Tool Visual Director
@@ -9,11 +9,11 @@ Treat each screen as a communication problem before treating it as a styling pro
 
 ## 1. Inspect without editing
 
-Inspect the current screenshot or rendered screen, relevant code and layout, available data and definitions, target viewport, and the user's goal. Identify the viewer and the decision or task the screen supports. If an input is unavailable, state the assumption or limitation; do not invent data or infer the rendered result from code alone. For critique-only work, this and the following design stages are the deliverable.
+Inspect the current screenshot or rendered screen, relevant code and layout, available data and definitions, target viewport, and the user's goal. Read existing design context and preserve visual direction the user has already chosen. Identify the viewer and the decision or task the screen supports. If an input is unavailable, state the assumption or limitation; do not invent data or infer the rendered result from code alone. For critique-only work, complete the applicable design and critique stages without implementation.
 
 ## 2. Diagnose the communication failure
 
-Describe what currently draws attention first, what should draw attention first, and what competes with it. Look for unnecessary cards, excess text, weak grouping, unsuitable charts, interaction friction, and styling issues. Translate vague reactions into specific, observable causes and effects. Classify findings under information architecture, visualization, visual hierarchy, interaction, and cosmetic styling. Prioritize structural causes before cosmetic symptoms. Use [visual hierarchy](references/visual-hierarchy.md) and [critique rubric](references/critique-rubric.md) when the diagnosis needs sharper criteria.
+Describe what currently draws attention first, what should draw attention first, and what competes with it. Look for unnecessary cards, excess text, weak grouping, unsuitable charts, interaction friction, and styling issues. Translate vague reactions into specific, observable causes and effects. Classify findings under information architecture, visualization, visual hierarchy, interaction, and cosmetic styling. Prioritize structural causes before cosmetic symptoms. Use [visual hierarchy](references/visual-hierarchy.md) and [critique rubric](references/critique-rubric.md) when the diagnosis needs sharper criteria; use [UX heuristics](references/ux-heuristics.md) only when task flow or interaction is at issue.
 
 ## 3. State Visual Intent before implementation
 
@@ -45,13 +45,21 @@ For each chart or visual, write the analytical question it must answer. Keep, re
 
 Before implementation, describe the proposed screen in reading order: what leads, where its evidence sits, what follows, and what becomes progressively disclosed. Question the existing layout. Reorder sections, resize panels, merge or remove cards, replace charts, adjust density, and move supporting details below when these changes clarify the decision. Use [dashboard patterns](references/dashboard-patterns.md) for domain-specific arrangements, without treating them as templates.
 
-## 6. Implement when requested
+## 6. Check design intent when visual direction matters
 
-Only after diagnosis, Visual Intent, visualization choice, and layout structure are explicit, modify the application. Preserve correct data, definitions, and important behavior. Check chart semantics, labels, units, interaction states, and accessibility as part of the implementation. When those changes raise accessibility questions, use [minimal accessibility checks](references/accessibility-checks.md) during implementation or rendered critique. A request for critique or direction alone does not authorize code changes.
+After the information structure and Visual Intent are clear, use [design intent](references/design-intent.md) if the request concerns visual character or an existing direction needs interpretation. Ground it in the project's current choices and the user's specific references; do not turn vague adjectives into automatic style prescriptions.
 
-## 7. Critique the rendered result and revise
+## 7. Implement when requested
 
-Inspect an actual rendered screenshot at the target viewport after implementation. Ask: What appears first? Is it the first-glance target? Can that target be recognized without reading every sentence? Is supporting evidence adjacent? Do elements compete equally? Does every chart answer a question? What can be removed? Does the viewport work? Use [critique rubric](references/critique-rubric.md) to record concrete failures. Revise and render again when the result misses the intent. If rendering is unavailable, report that visual verification is incomplete rather than declaring success from source code.
+Only after diagnosis, Visual Intent, visualization choice, layout structure, and any relevant design intent are explicit, modify the application. Preserve correct data, definitions, important behavior, and useful existing design decisions. Check chart semantics, labels, units, and interaction states. Use [accessibility and quality checks](references/accessibility-checks.md) when changes affect those concerns. A request for critique or direction alone does not authorize code changes.
+
+## 8. Check UX quality and visual craft
+
+When task flow or controls changed, inspect relevant interaction states with [UX heuristics](references/ux-heuristics.md) and [accessibility and quality checks](references/accessibility-checks.md). After communication and structure are established, use [visual craft](references/visual-craft.md) to judge execution and contextual fit. Do not infer live behavior from a still screenshot.
+
+## 9. Critique the rendered result and revise
+
+Inspect an actual rendered screenshot at the target viewport for a screen critique and after implementation. Use [critique rubric](references/critique-rubric.md) for separate Communication and Craft verdicts; both must pass. When implementation produces an after screen and a previous screen exists, compare them at the same viewport and data/state. If implementation was requested, revise and render again when either layer misses its intent; for critique-only requests, report the findings. If rendering is unavailable, report visual verification as incomplete rather than declaring success from source code.
 
 ## Avoid
 
