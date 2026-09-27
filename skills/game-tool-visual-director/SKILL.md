@@ -5,7 +5,7 @@ description: Diagnose and redesign information-heavy game planning tools, analyt
 
 # Game Tool Visual Director
 
-Treat each screen as a communication problem before treating it as a styling problem. Translate subjective feedback into observable problems and a testable visual intent. A polished screen should help its viewer understand a conclusion and make a decision, not merely display all available information.
+Treat each screen as a communication problem before treating it as a styling problem. Translate subjective feedback into observable problems and a testable visual intent. A polished screen should help its viewer recognize the relevant conclusion, state, object, relationship, or action and proceed with the task, not merely display all available information.
 
 ## 1. Inspect without editing
 
@@ -21,8 +21,8 @@ Present this compact brief to the user before changing the UI:
 
 ```text
 Viewer:
-First-second message: [one conclusion understandable within 1–3 seconds]
-Decision this screen supports:
+First-glance target: [the one conclusion, state, object, relationship, or action the viewer should recognize within 1–3 seconds]
+Decision or task this screen supports:
 Attention order:
 1.
 2.
@@ -34,6 +34,8 @@ Remove or de-emphasize:
 ```
 
 Make the intended message and evidence specific to the screen. Distinguish primary, secondary, and tertiary information. If the evidence does not justify a confident conclusion, make uncertainty part of the message.
+
+Continue after stating Visual Intent unless the goal is unclear, an important product decision or destructive change requires user input, or the user explicitly requested review before implementation.
 
 ## 4. Reconsider every representation
 
@@ -49,7 +51,7 @@ Only after diagnosis, Visual Intent, visualization choice, and layout structure 
 
 ## 7. Critique the rendered result and revise
 
-Inspect an actual rendered screenshot at the target viewport after implementation. Ask: What appears first? Is it the intended message? Can the main conclusion be understood without reading every sentence? Is supporting evidence adjacent? Do elements compete equally? Does every chart answer a question? What can be removed? Does the viewport work? Use [critique rubric](references/critique-rubric.md) to record concrete failures. Revise and render again when the result misses the intent. If rendering is unavailable, report that visual verification is incomplete rather than declaring success from source code.
+Inspect an actual rendered screenshot at the target viewport after implementation. Ask: What appears first? Is it the first-glance target? Can that target be recognized without reading every sentence? Is supporting evidence adjacent? Do elements compete equally? Does every chart answer a question? What can be removed? Does the viewport work? Use [critique rubric](references/critique-rubric.md) to record concrete failures. Revise and render again when the result misses the intent. If rendering is unavailable, report that visual verification is incomplete rather than declaring success from source code.
 
 ## Avoid
 

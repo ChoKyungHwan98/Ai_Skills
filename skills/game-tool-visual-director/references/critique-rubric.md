@@ -4,7 +4,7 @@ Use this rubric for the initial diagnosis and again on a rendered screenshot aft
 
 ## Verdict
 
-Record **PASS** only when the rendered screen communicates the intended first-second message, connects it to evidence, supports the decision, and works at the target viewport. Record **NEEDS REVISION** if any of those conditions fail. Do not use a numeric score. Give the observed reason and the next change to test.
+Record **PASS** only when the rendered screen communicates the intended first-glance target, connects it to supporting evidence where relevant, supports the decision or task, and works at the target viewport. Record **NEEDS REVISION** if any of those conditions fail. Do not use a numeric score. Give the observed reason and the next change to test.
 
 ## Review prompts
 
@@ -18,13 +18,19 @@ Record **PASS** only when the rendered screen communicates the intended first-se
 
 ## Rendered-screen pass
 
-1. View the screen at the target viewport without reading every sentence. Write the first thing noticed and the conclusion retained after 1–3 seconds.
+1. View the screen at the target viewport without reading every sentence. Write the first thing noticed and what was recognized after 1–3 seconds.
 2. Trace the eye from that first point to the evidence and next action. Note jumps, dead ends, and equal-weight competition.
 3. Check each chart against its stated analytical question. Look for distorted scales, missing units, weak labels, and decorative visuals.
 4. Identify one element to remove or de-emphasize. If nothing can be removed, explain what each prominent element contributes.
 5. Check the target viewport and relevant interaction states, including empty, loading, error, selected, and narrow layouts when those states matter to the task.
 
-The rendered pass should answer explicitly: What appears first? Is that the intended message? Can the conclusion be understood without reading the explanation? Are claim and evidence adjacent? Are elements competing? Does each chart answer a clear question? What can be removed? Does the target viewport work?
+The rendered pass should answer explicitly: What appears first? Is that the intended first-glance target? Can it be recognized without reading the explanation? Are claim and evidence adjacent where relevant? Are elements competing? Does each chart answer a clear question? What can be removed? Does the target viewport work?
+
+## Before / After Proof
+
+When a previous screen exists, compare before and after at the same viewport with the same data and state. Verify whether the first-glance target is clearer, the reading path is shorter, competing emphasis is reduced, the relationship between claim and evidence has improved, and important information has not been lost. Check whether the diagnosed problems were resolved or only the styling changed.
+
+A redesign is not an improvement merely because it looks different.
 
 ## Prioritize revisions
 
