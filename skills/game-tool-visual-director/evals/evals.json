@@ -278,6 +278,17 @@
         "Use line-height around 1.6 with letter-spacing 0 for Hangul body text and limit paragraph width.",
         "Verify with a rendered check such as the style inventory rather than from CSS alone."
       ]
+    },
+    {
+      "id": 28,
+      "name": "crowded-scatter-proportion",
+      "prompt": "In a priority matrix, mention counts range from 20 to 121 on a linear 0–150 axis, so nine of thirteen topics sit in the left quarter while the right is mostly empty. The context dots are small grey circles and the highlighted dots use a glossy sphere gradient. The user says the overall proportion is wrong and the circles look poor.",
+      "expected_behavior": [
+        "Diagnose the skewed count axis as the cause of the crowding rather than only enlarging dots.",
+        "Propose a log scale (or another honest transform) for the count axis, labeled clearly on the axis, keeping thresholds and data values unchanged.",
+        "Redesign markers with a clear hierarchy, such as zone-tinted hollow rings for context and solid highlighted points with a white ring, without glossy or skeuomorphic effects.",
+        "Re-render and check label collisions after the scale change."
+      ]
     }
   ]
 }
