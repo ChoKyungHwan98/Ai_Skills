@@ -36,8 +36,13 @@ def hashes(folder, ignore_receipt=True):
         if path.is_symlink() or (hasattr(path, "is_junction") and path.is_junction()):
             raise ValueError(f"Linked file is not supported: {path}")
         if path.is_file():
-            key = path.relative_to(folder).as_posix()
+            relative = path.relative_to(folder)
+            key = relative.as_posix()
             if ignore_receipt and key == RECEIPT:
+                continue
+            # Running a helper creates bytecode, not a user edit. Full backup
+            # hashes still include it, and other files in cache folders stay protected.
+            if ignore_receipt and "__pycache__" in relative.parts and path.suffix in {".pyc", ".pyo"}:
                 continue
             found[key] = hashlib.sha256(path.read_bytes()).hexdigest()
     return found

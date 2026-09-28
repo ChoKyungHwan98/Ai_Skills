@@ -100,7 +100,7 @@
       "expected_behavior": [
         "Translate the reference into specific candidate traits that suit the current task, such as hierarchy, navigation, or interaction tone, rather than copying its appearance.",
         "Treat higher information density as an explicit requirement and decide what must remain visible.",
-        "Check existing product direction first and ask a focused question only if unresolved choices would materially change the design."
+        "Check existing product direction first; choose reversible aesthetic details and ask only for an unresolved consequential product fact or constraint."
       ]
     },
     {
@@ -220,11 +220,12 @@
     },
     {
       "id": 22,
-      "name": "no-taste-file-offers-choices",
+      "name": "no-taste-file-recommends-then-offers-choices",
       "prompt": "A user who says they do not know design asks to make an analytics screen look premium. The project has no taste file or design tokens beyond the current CSS. Decide what to ask before polishing.",
       "expected_behavior": [
-        "Ask at most three multiple-choice questions in one turn (brightness, mood, intensity) instead of asking the user to describe the design.",
-        "Start from the matching preset and record the answers and chosen values in a project taste file.",
+        "Pick a recommended direction from the screen and task first, then offer it once as at most three multiple-choice questions (brightness, mood, intensity) with the recommendation marked, instead of asking the user to describe the design.",
+        "If the user says to decide, skips the questions, or cannot be asked, proceed with the recommendation; the questions never block work.",
+        "Start from the matching preset and record the answers (or that the recommendation was used) and the chosen values in a project taste file.",
         "Do not repeat the questions in later passes once the taste file exists."
       ]
     },
@@ -299,6 +300,70 @@
         "Replace banned treatments with the nearest allowed form (neutral shadows, no colored glow, opaque chrome) and rerun the detector until the files report 0.",
         "Compare rendered-page findings against the unchanged base, and fix only the new ones.",
         "Apply the user-approved change to the documented pane rule only together with an update to that document, and tell the user which rule changed."
+      ]
+    },
+    {
+      "id": 30,
+      "name": "no-design-vocabulary-or-references",
+      "prompt": "You have the source and a runnable preview of a Korean game-planning dashboard. Its composition is accepted, but topic labels, values, controls, and chart annotations use inconsistent visual treatments. The user says: 나는 디자인 소양이 부족해서 뭘 고쳐야 할지 설명도 못 하고 레퍼런스도 못 줘. 지금 구성은 유지하고 네가 보기 좋게 다듬어줘. Carry out the request.",
+      "expected_behavior": [
+        "Inspect the available preview and relevant source instead of requiring a user-supplied reference or style interview.",
+        "Choose and briefly explain one concrete treatment across the affected type, color, chart, and component roles in ordinary language.",
+        "Implement within the accepted composition without waiting for approval of reversible aesthetic details.",
+        "Inspect the actual resulting render and relevant interactions, revise consequential failures, and report separate Communication and Craft evidence."
+      ]
+    },
+    {
+      "id": 31,
+      "name": "agent-decides-aesthetic-direction",
+      "prompt": "An expert game-planning tool's workflow and data are correct. The live screen and source are available. The user says: 색감이랑 폰트는 내가 고르면 더 이상해질 것 같아. 네가 정해서 완성해줘. Do the visual polish.",
+      "expected_behavior": [
+        "Recommend and implement one coherent visual direction based on the task and current screen.",
+        "Do not return an unranked style menu, request palette/font choices, or stop at a proposal.",
+        "Protect useful information density and semantic data colors; explain visible changes and verify the real result.",
+        "Judge product character and whole-screen craft rather than treating consistent tokens or working code as sufficient."
+      ]
+    },
+    {
+      "id": 32,
+      "name": "novice-critique-only",
+      "prompt": "A rendered planning screen and its source are available. The user says: 디자인을 몰라서 뭐가 문제인지 모르겠어. 레퍼런스는 없어. 우선 문제랑 네 추천만 설명해줘. 아직 수정하지 마. Complete this request.",
+      "expected_behavior": [
+        "Inspect the screen, identify significant visible problems, and recommend a concrete treatment without asking for references or design vocabulary.",
+        "Explain consequences and proposed changes in language the user can connect to the screen.",
+        "Respect the explicit critique-only boundary; do not edit files or claim an after result exists."
+      ]
+    },
+    {
+      "id": 33,
+      "name": "missing-product-fact-not-style",
+      "prompt": "A bare project contains only an unlabeled table of numbers. There is no README, usage context, prior conversation, or meaningful field names. The user says: 디자인은 네가 알아서 예쁘게 만들어줘. Choose a responsible next step.",
+      "expected_behavior": [
+        "Inspect the available project and recognize that the viewer's task and number meanings cannot be reliably inferred.",
+        "Ask a focused question about the user/task or data meaning rather than demanding visual references, aesthetic labels, or palette choices.",
+        "Do not invent a business conclusion, audience, or chart encoding while waiting; continue only work independent of those facts."
+      ]
+    },
+    {
+      "id": 34,
+      "name": "no-reference-and-render-unavailable",
+      "prompt": "The user asks to polish an accepted analytics screen and has no design references. Source, data definitions, and tokens are available, but every supported preview attempt fails because a runtime dependency is missing. Handle the request within the available environment.",
+      "expected_behavior": [
+        "Attempt appropriate preview recovery and use accessible source/context for supported improvements without making a reference a prerequisite.",
+        "Distinguish source-derived findings from visual observations and describe any implemented work accurately.",
+        "Mark rendered Communication and Craft NOT VERIFIED and identify the concrete runtime/render step still needed.",
+        "Do not invent a screenshot, assert visual success from compilation, or ask the novice to replace the missing professional judgment."
+      ]
+    },
+    {
+      "id": 35,
+      "name": "vague-followup-is-useful-feedback",
+      "prompt": "After a first polish, a matched live render shows aligned rows and readable values, but headings, topic labels, and annotations still carry nearly identical emphasis. The accepted composition and dense comparisons must remain. The user says: 설명은 못 하겠는데 아직 좀 밋밋해. 더 다듬어줘. Continue the work.",
+      "expected_behavior": [
+        "Treat the reaction as a useful signal and inspect the current screen to locate the remaining visual weakness.",
+        "Recommend and implement a stronger task-specific type/annotation treatment without asking the user to name a style or supply an example.",
+        "Preserve accepted composition, useful density, and correct data meanings instead of using unrelated decoration as a default fix.",
+        "Render again and assess the visible result; do not claim the response's design explanation proves the treatment worked."
       ]
     }
   ]

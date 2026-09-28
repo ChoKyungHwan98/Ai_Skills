@@ -1,5 +1,12 @@
 # Changes
 
+## 4.1.0 — candidate — 2026-09-28
+
+Combines 3.3.0 (design ownership without references) and 4.0.0 (surface polish route).
+
+- Keep the 3.3 scope-aware four-step workflow and add the surface polish route to it.
+- Settle a surface direction by recommending first: offer at most three multiple-choice questions once with the recommendation marked, and proceed with the recommendation when the user says “네가 정해”, skips, or cannot be asked. Taste never blocks work.
+
 ## 4.0.0 — candidate — 2026-09-28
 
 - Add a surface polish route: once the composition is accepted, a polish pass treats all eight layers (canvas and light, surface and elevation, type and readability, color, data marks, details, emphasis contrast, motion) with concrete values. Changing one or two properties no longer counts as a polish.
@@ -12,6 +19,18 @@
 - Add regression scenarios 21–29 and the surface-polish reference case with before and after renders and user feedback.
 
 Evidence comes from a mockup the user reviewed, not from a candidate run against the real application. An old/candidate comparison is still pending.
+
+## 3.3.0 — candidate — 2026-09-28
+
+- Make design judgment the agent's responsibility when the user lacks references, design vocabulary, or a precise problem description.
+- Replace the fixed nine-stage workflow with scope-aware inspection, a concrete recommendation, implementation, and rendered review.
+- Expand design-intent guidance for deriving visual treatments from the product, explaining choices in ordinary language, and researching references only when useful.
+- Add six regression scenarios for vague requests, delegated aesthetic choices, missing product facts, critique boundaries, and unavailable renders.
+- Align missing-evidence verdicts with NOT VERIFIED and remove the requirement to find something to remove in every review.
+- Correct trial-install instructions for the still-unmerged candidate branch.
+- Ignore generated Python bytecode during local-edit checks while preserving full backup integrity and protection for other files in cache folders.
+
+The accompanying screenshot exercise records a recommendation from a historical render, not a candidate implementation or independent old/candidate comparison. Visual improvement remains unverified; retain candidate status.
 
 ## 3.2.0 — candidate — 2026-09-28
 

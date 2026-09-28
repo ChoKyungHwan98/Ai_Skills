@@ -20,14 +20,14 @@ python scripts/check_skills.py
 python -m unittest discover -s tests -v
 python scripts/manage_skills.py status
 
-# 안정 버전만 허용하며, 작업 파일은 변경하지 않고 지정 커밋을 추출
+# main의 candidate를 가져와 시험
+python scripts/manage_skills.py sync --ref origin/main --fetch --allow-candidate
+
+# 비관리 설치본의 첫 전환에만 --adopt 추가: 전체 백업 후 교체
+python scripts/manage_skills.py sync --ref origin/main --fetch --allow-candidate --adopt
+
+# stable로 승격된 이후
 python scripts/manage_skills.py sync --ref origin/main --fetch
-
-# 비관리 설치본의 첫 전환: 전체 백업 후 교체
-python scripts/manage_skills.py sync --ref origin/main --fetch --adopt
-
-# 명시적으로 후보 버전 시험 (개발 브랜치의 커밋)
-python scripts/manage_skills.py sync --ref HEAD --allow-candidate --adopt
 
 # sync가 출력한 backup bundle의 경로 사용
 python scripts/manage_skills.py rollback --backup "C:/path/to/backup-bundle"
@@ -35,7 +35,11 @@ python scripts/manage_skills.py rollback --backup "C:/path/to/backup-bundle"
 
 `sync`는 지정한 ref를 커밋으로 고정하고 검사한 뒤 설치합니다. 작업 중인 미커밋 파일을 설치하지 않습니다. 후보는 `--allow-candidate` 없이는 설치되지 않습니다. `--fetch`는 원본 main만 가져오며 앱 종료나 checkout 변경을 하지 않습니다. private 저장소에는 사용자의 Git 인증이 필요합니다. 자격 증명은 설치 기록에 저장하지 않습니다.
 
+현재 main에는 유지보수 manifest와 candidate 버전이 있습니다. 로컬 브랜치의 커밋을 시험하려면 `--ref HEAD --allow-candidate`를 지정할 수 있습니다.
+
 업데이트 전에 설치본의 실제 파일 해시와 기록을 비교합니다. 직접 수정되거나 파일이 추가/삭제된 관리 설치본은 중단하고 변경 목록을 보여줍니다. 수정 내용을 원본 브랜치에 반영하거나 별도로 보존한 뒤 진행하세요. `--adopt`는 비관리 설치본 전환에만 쓰이며 수정된 관리 설치본을 강제 덮어쓰지 않습니다.
+
+헬퍼 실행으로 `__pycache__`에 생성된 `.pyc`/`.pyo`는 사용자 수정으로 간주하지 않습니다. 그 폴더의 다른 파일은 여전히 보호하며, 전체 백업에는 캐시도 포함해 무결성을 검사합니다.
 
 기본 백업 위치는 `~/.codex/skill-backups/<skill>/<timestamp>/`입니다. `payload`는 기존 설치본 전체이고 `receipt.json`은 대상과 해시입니다. 복구는 백업 무결성과 현재 설치본을 확인한 뒤 진행하고, 복구 직전 설치본도 다시 백업합니다. 백업은 자동 삭제하지 않습니다.
 
