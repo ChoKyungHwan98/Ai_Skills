@@ -1,0 +1,44 @@
+{
+  "id": "review-dashboard-polish-and-overlap",
+  "skill": "game-tool-visual-director",
+  "evaluation_status": "reference_only",
+  "related_prompt_ids": [11, 12, 14],
+  "request": "현재 구성과 우선순위 지도를 유지하고 시각적 완성도를 높인다. 가격/오픈월드의 겹침을 풀어도 실제 좌표는 변하지 않아야 한다.",
+  "captures": [
+    {
+      "file": "before-craft.jpg",
+      "image_size": [1920, 1080],
+      "provenance": "Existing rendered browser capture from the review-analysis application, priority-map-desktop.png, 2026-09-28.",
+      "state": "Palworld app_id=1623730, optimization selected; before additional visual polish."
+    },
+    {
+      "file": "after-craft.jpg",
+      "image_size": [1920, 1080],
+      "provenance": "Existing rendered browser capture from the same application, priority-map-polished-desktop.png, 2026-09-28.",
+      "state": "Palworld app_id=1623730, optimization selected; after additional visual polish."
+    },
+    {
+      "file": "displaced-marks-reference.png",
+      "image_size": [1920, 1080],
+      "provenance": "User-provided desktop screenshot codex-clipboard-cb099142-13c2-4158-90ea-d4f7cac62b26.png, provided within this authorized skill-maintenance discussion.",
+      "state": "Original displaced-circle treatment; native window chrome reduces the application viewport."
+    }
+  ],
+  "comparison_limits": [
+    "The browser captures have matching image dimensions and visible game/counts/selection, but no machine-readable data fingerprint was recorded at capture time.",
+    "The native desktop reference is not a matched-viewport before/after pair with the browser captures.",
+    "These are historical regression inputs, not results of a new run of the current candidate and not evidence of an independently certified visual PASS.",
+    "A still screenshot cannot prove hover, keyboard access, topic selection, or correct hidden coordinate values."
+  ],
+  "observed_findings": [
+    "The displaced-marks reference shows short dashed segments and an artificial separation between some nearby circles.",
+    "The before-craft browser capture has small topic annotations and only 0/50/100 percent ticks.",
+    "The after-craft browser capture uses larger hero annotations, labeled axes, quarter-step y ticks, and a visibly identified two-topic inspector."
+  ],
+  "acceptance_checks": [
+    "Preserve the priority map composition and verify marks against original values.",
+    "Inspect both close topics through actual interaction; a cluster inspector must not masquerade as a shifted individual data mark.",
+    "Evaluate color roles, contrast, type hierarchy, spacing, and contextual fit from a real render.",
+    "Record Communication and Craft independently; do not reopen accepted structure solely because craft needs revision."
+  ]
+}

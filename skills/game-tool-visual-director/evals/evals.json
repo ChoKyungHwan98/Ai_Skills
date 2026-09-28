@@ -102,6 +102,204 @@
         "Treat higher information density as an explicit requirement and decide what must remain visible.",
         "Check existing product direction first and ask a focused question only if unresolved choices would materially change the design."
       ]
+    },
+    {
+      "id": 11,
+      "name": "accepted-composition-visual-polish",
+      "prompt": "You have a rendered review dashboard and its source. The user says: 구성은 완성된 거야. 우선순위 지도는 유지해. 색감이나 디자인이 눈에 안 들어와서 시각적 완성도를 높여줘. Diagnose and implement within that scope, then verify the rendered result.",
+      "expected_behavior": [
+        "Treat composition and scatter chart choice as protected decisions; infer the established task instead of restarting a broad interview.",
+        "Address specific color roles, contrast, typography, annotation scale, alignment, spacing, and state clarity observed in the screen.",
+        "Inspect an actual after render and give separate Communication and Craft verdicts with visible evidence.",
+        "Do not claim that fixing coordinates alone proves that visual polish succeeded."
+      ]
+    },
+    {
+      "id": 12,
+      "name": "scatter-overlap-data-position",
+      "prompt": "The priority map is a scatter chart: x = mentioned review count, y = negative mentions / all mentions. Price has 39 mentions and 4 negative; open world has 40 mentions and 4 negative. Their circles overlap. The user wants both identifiable while keeping this chart. Resolve the problem and describe the verification needed.",
+      "expected_behavior": [
+        "Keep the positional marks at x=39,y=4/39 and x=40,y=4/40, with consistent axis units; do not move them to a grid or change their plotted values.",
+        "Choose an honest treatment such as smaller marks plus separated labels, or an explicit cluster inspector showing individual values.",
+        "If a cluster proxy is used, visibly distinguish it from an individual data mark and provide access to each topic.",
+        "Verify coordinate invariants against the original data and check both topics can be inspected in the rendered interaction."
+      ]
+    },
+    {
+      "id": 13,
+      "name": "task-scoped-tool-preferences",
+      "prompt": "A previous task requested game-tool-visual-director and excluded a companion design skill. The user now says that a permanent ban is undesirable and that tools should be chosen for the task. Maintain the visual-director skill accordingly.",
+      "expected_behavior": [
+        "Keep task-specific user choices authoritative and allow suitable complementary skills when available and helpful.",
+        "Do not add a permanent blacklist, automatically disable another installed skill, or create a mandatory external dependency.",
+        "Do not reuse a one-task exclusion as a project-wide rule without explicit scope."
+      ]
+    },
+    {
+      "id": 14,
+      "name": "tests-do-not-prove-craft",
+      "prompt": "The UI compiles and chart coordinate checks pass. The only actual screenshot is the before screen. The developer says polish is complete. Give the verification verdict and the next concrete step.",
+      "expected_behavior": [
+        "Report visual verification as incomplete; do not give Craft PASS or claim a screenshot was inspected.",
+        "Separate proven data/functional invariants from unverified visual quality.",
+        "Request or generate an actual after capture at the target viewport and data/state, then evaluate the visible changes."
+      ]
+    },
+    {
+      "id": 15,
+      "name": "imported-palette-preserves-product",
+      "prompt": "The composition of a Korean game-planning analytics tool is accepted. A GitHub design catalog suggests a SaaS blue/orange palette and spacious marketing layout. The user wants stronger visual polish while keeping the existing priority map. Decide what to adopt.",
+      "expected_behavior": [
+        "Treat catalog colors and fonts as candidates and inspect existing product tokens, data meanings, and actual rendered weaknesses.",
+        "Use color roles and a task-appropriate type hierarchy while retaining accepted composition and useful comparison density.",
+        "Do not replace the chart or import a marketing layout merely because it accompanies the suggested palette."
+      ]
+    },
+    {
+      "id": 16,
+      "name": "korean-chart-type-coverage",
+      "prompt": "A font catalog proposes a Latin display/body pair for the analytics screen. It includes Korean topic labels such as 멀티플레이 and 팰 디자인, Latin game names, percentages, and long review quotes. Plan the typography verification.",
+      "expected_behavior": [
+        "Verify actual Hangul, Latin, numbers, punctuation, and long labels at the real viewport with the proposed font stack.",
+        "Distinguish label, value, axis, annotation, and supporting text roles and preserve readable supporting content.",
+        "Do not assume a catalog font pairing proves Korean coverage or set a universal tiny label size."
+      ]
+    },
+    {
+      "id": 17,
+      "name": "selection-keeps-sentiment-meaning",
+      "prompt": "Red means complaints and blue means praise in the priority map. Selecting a complaint topic currently recolors its red point blue because blue is also the UI accent. Improve its selected treatment.",
+      "expected_behavior": [
+        "Keep the complaint meaning recognizable and communicate selection through an additional ring, outline, label, or equivalent treatment.",
+        "Separate data color roles from control/focus roles instead of allowing brand accent to reverse the topic's meaning.",
+        "Check rendered distinguishability and the relevant live selection state."
+      ]
+    },
+    {
+      "id": 18,
+      "name": "overlap-preserves-bubble-encoding",
+      "prompt": "In this accepted bubble chart, x/y are quantitative and bubble area represents a third metric. Two marks overlap. A proposed polish makes all bubbles the same size and moves one to a free grid slot. Evaluate the proposal and suggest a compliant treatment.",
+      "expected_behavior": [
+        "Reject the changed position and lost size encoding as data/representation regressions.",
+        "Keep true positions and the size meaning, using separated labels, a consistent size scale, or an explicitly identified inspector where appropriate.",
+        "Require access to each close item and verify actual interactions rather than claiming a still image proves reachability."
+      ]
+    },
+    {
+      "id": 19,
+      "name": "candidate-comparison-needs-matched-evidence",
+      "prompt": "We want to know if a new visual skill is better. Its output uses different game data and a wider viewport than the old output. The new CI is green. Historical screenshots exist, but neither was generated by the candidate. Evaluate the evidence and define a useful comparison.",
+      "expected_behavior": [
+        "Do not infer visual improvement from CI or treat historical captures as candidate-run outputs.",
+        "Compare old and candidate on the same request, project/data snapshot, viewport, selection, and comparable effort; record limitations if matching is unavailable.",
+        "Judge actual output, scope, data integrity, Communication, Craft, and relevant interaction separately.",
+        "Use neutral or version-blind review only when available and authorized; keep unsupported outcomes NOT VERIFIED."
+      ]
+    },
+    {
+      "id": 20,
+      "name": "contrast-threshold-not-rounded",
+      "prompt": "A normal-sized chart label uses #777777 on #FFFFFF. Its contrast ratio is about 4.478 and the report displays 4.5 after rounding. Another label is over a translucent panel with no resolved background color. Can the labels be marked contrast PASS?",
+      "expected_behavior": [
+        "Use the unrounded value for the 4.5:1 normal-text threshold, so the first pair does not pass it.",
+        "Resolve the actual composed foreground/background before assessing the second pair; mark it unverified until then.",
+        "Do not equate a color-pair calculation with complete chart readability or accessibility verification."
+      ]
+    },
+    {
+      "id": 21,
+      "name": "polish-covers-all-surface-layers",
+      "prompt": "The user has accepted the layout of a review-analytics dashboard (headline claim, priority matrix, topic inspector). They say only: 시각화 폴리싱해줘. The rendered screen uses flat white, grey borders, solid-color bars, small dots, and four black buttons.",
+      "expected_behavior": [
+        "Keep the structure, data, and copy; do not reopen the layout.",
+        "Address all eight surface layers (canvas and light, surface and elevation, type and readability, color, data marks, details, emphasis, motion) with concrete values, or state why a layer needs no change.",
+        "Do not end after one or two property changes such as tick counts or border tweaks.",
+        "Avoid ornaments that attach to no content, such as a decorative logo mark.",
+        "Measure and render before and after; report in plain words and ask for a one-word reaction."
+      ]
+    },
+    {
+      "id": 22,
+      "name": "no-taste-file-offers-choices",
+      "prompt": "A user who says they do not know design asks to make an analytics screen look premium. The project has no taste file or design tokens beyond the current CSS. Decide what to ask before polishing.",
+      "expected_behavior": [
+        "Ask at most three multiple-choice questions in one turn (brightness, mood, intensity) instead of asking the user to describe the design.",
+        "Start from the matching preset and record the answers and chosen values in a project taste file.",
+        "Do not repeat the questions in later passes once the taste file exists."
+      ]
+    },
+    {
+      "id": 23,
+      "name": "plateau-switches-to-preview",
+      "prompt": "Two polish rounds on the same dashboard changed annotation borders and tick counts. The user says: 스킬대로 했는데 제자리걸음이야. Decide the next step.",
+      "expected_behavior": [
+        "Recognize the plateau and stop further local tweaks.",
+        "Produce a layer-toggle preview or two to three visually distinct variants of the same screen and data for the user to choose from.",
+        "Record the choice in the taste file and apply it across all layers."
+      ]
+    },
+    {
+      "id": 24,
+      "name": "reference-technique-not-copy",
+      "prompt": "The user shares a screenshot of another product with purple bars and says: 이거 반영하지 말고 참고만 해. 이 그래프는 밋밋하지 않잖아, 이런 걸 뭐라고 해? 우리 빨간 막대는 밋밋해.",
+      "expected_behavior": [
+        "Name the technique (data-mark styling: tonal gradient, rounded data end, faint track, capped bar width) in plain words.",
+        "Apply the principle to the project's own bars and palette without copying the reference's colors, layout, or brand.",
+        "Keep data values and bar heights unchanged and add the technique to the taste file vocabulary."
+      ]
+    },
+    {
+      "id": 25,
+      "name": "dated-color-feedback",
+      "prompt": "After a polish pass, the user says the palette looks old (색상이 너무 올드해). The screen uses muted crimson #C0353F and navy #2E59C7 on neutral greys, and the red/blue quadrant zones had been faded to near-invisible gradients.",
+      "expected_behavior": [
+        "Move to vivid modern fills (defined in OKLCH with a hex fallback) with a separate darker text step per hue that passes 4.5:1 on its background.",
+        "Tint neutrals toward the canvas hue and keep semantic roles unchanged.",
+        "Keep semantic zones that the viewer reads at a glance visibly tinted rather than fading them away.",
+        "Verify computed contrast for changed text pairs."
+      ]
+    },
+    {
+      "id": 26,
+      "name": "hover-keeps-focus-visible",
+      "prompt": "A scatter-based priority matrix dims all other marks when the viewer hovers a point. The user reports that the highlighted topics and their labels fade too, which makes the screen uncomfortable to read.",
+      "expected_behavior": [
+        "Dim only context marks, and keep highlighted or selected marks and their labels at full strength.",
+        "Use a moderate dim level, a short transition, and a hit target larger than the mark.",
+        "Check the hover state live rather than from a still screenshot, and respect reduced-motion settings."
+      ]
+    },
+    {
+      "id": 27,
+      "name": "korean-readability-pass",
+      "prompt": "A Korean dashboard splits words across lines (for example 상 / 승합니다), uses 12px grey metadata, and mixes twelve font sizes. The user says typography and readability were ignored.",
+      "expected_behavior": [
+        "Apply word-break: keep-all to Hangul text, raise every size to at least 13px, and reduce the scale to a few defined steps.",
+        "Use line-height around 1.6 with letter-spacing 0 for Hangul body text and limit paragraph width.",
+        "Verify with a rendered check such as the style inventory rather than from CSS alone."
+      ]
+    },
+    {
+      "id": 28,
+      "name": "crowded-scatter-proportion",
+      "prompt": "In a priority matrix, mention counts range from 20 to 121 on a linear 0–150 axis, so nine of thirteen topics sit in the left quarter while the right is mostly empty. The context dots are small grey circles and the highlighted dots use a glossy sphere gradient. The user says the overall proportion is wrong and the circles look poor.",
+      "expected_behavior": [
+        "Diagnose the skewed count axis as the cause of the crowding rather than only enlarging dots.",
+        "Propose a log scale (or another honest transform) for the count axis, labeled clearly on the axis, keeping thresholds and data values unchanged.",
+        "Redesign markers with a clear hierarchy, such as zone-tinted hollow rings for context and solid highlighted points with a white ring, without glossy or skeuomorphic effects.",
+        "Re-render and check label collisions after the scale change."
+      ]
+    },
+    {
+      "id": 29,
+      "name": "project-rules-outrank-preset",
+      "prompt": "The user approved a layer preview with borderless floating cards, a colored glow under the key bar, and a translucent blurred sidebar, and asks to apply it to their app. The app's AGENTS.md bans colored glows and thin borders with wide shadows, requires `npx impeccable detect` to report 0 findings, and its design doc says panes are divided by 1px lines to match a host studio.",
+      "expected_behavior": [
+        "Read the project's instructions and design doc before implementing the preset.",
+        "Replace banned treatments with the nearest allowed form (neutral shadows, no colored glow, opaque chrome) and rerun the detector until the files report 0.",
+        "Compare rendered-page findings against the unchanged base, and fix only the new ones.",
+        "Apply the user-approved change to the documented pane rule only together with an update to that document, and tell the user which rule changed."
+      ]
     }
   ]
 }
