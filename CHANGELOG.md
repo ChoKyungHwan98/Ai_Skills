@@ -8,6 +8,7 @@
 - Add six regression scenarios for vague requests, delegated aesthetic choices, missing product facts, critique boundaries, and unavailable renders.
 - Align missing-evidence verdicts with NOT VERIFIED and remove the requirement to find something to remove in every review.
 - Correct trial-install instructions for the still-unmerged candidate branch.
+- Ignore generated Python bytecode during local-edit checks while preserving full backup integrity and protection for other files in cache folders.
 
 The accompanying screenshot exercise records a recommendation from a historical render, not a candidate implementation or independent old/candidate comparison. Visual improvement remains unverified; retain candidate status.
 

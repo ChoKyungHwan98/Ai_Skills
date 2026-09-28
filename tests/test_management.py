@@ -1,6 +1,7 @@
 """Meaningful deployment invariants; no design-quality claims."""
 import io
 import json
+import py_compile
 import subprocess
 import sys
 import tarfile
@@ -93,6 +94,35 @@ class ManagementTests(unittest.TestCase):
         detail.unlink()
         with self.assertRaisesRegex(ValueError, "Local installation edits"):
             self.sync()
+
+    def test_generated_bytecode_allows_sync_and_survives_backup(self):
+        helper = self.skill / "scripts/helper.py"
+        helper.parent.mkdir()
+        helper.write_text("answer = 42\n", encoding="utf-8")
+        self.commit()
+        self.sync()
+        current = self.dest / self.name
+        cache = Path(py_compile.compile(str(current / "scripts/helper.py"), doraise=True))
+        cache_key = cache.relative_to(current).as_posix()
+        self.assertTrue(cache.exists())
+        self.assertNotIn(cache_key, hashes(current))
+        self.assertIn(cache_key, hashes(current, ignore_receipt=False))
+        self.assertEqual(self.sync()["status"], "up_to_date")
+
+        note = cache.parent / "local-note.txt"
+        note.write_text("Keep this user file", encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "Local installation edits"):
+            self.sync()
+        note.unlink()
+
+        before = hashes(current, ignore_receipt=False)
+        self.write_version("1.1.0")
+        self.commit()
+        updated = self.sync()
+        payload = Path(updated["backup"]) / "payload"
+        self.assertEqual(hashes(payload, ignore_receipt=False), before)
+        rollback(Path(updated["backup"]), self.backups)
+        self.assertEqual(hashes(current, ignore_receipt=False), before)
 
     def test_update_and_rollback_preserve_complete_versions(self):
         self.sync()
