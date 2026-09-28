@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="ko">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>팰월드 화면 포장</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&family=Manrope:wght@500;600;700&display=swap">
+<style>
+:root{
+  --w-bg:#F3F3F1; --w-surface:#FFFFFF; --w-line:#DCDCD7; --w-t1:#1A1A18; --w-t2:#52524C; --w-t3:#6B6B64;
+  --w-accent:#1A1A18; --w-accent-fg:#FFFFFF; --w-code:#F7F7F5; --w-on:#2E59C7;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --w-bg:#141413; --w-surface:#1D1D1B; --w-line:#34342F; --w-t1:#EDEDE8; --w-t2:#B4B4AC; --w-t3:#94948C;
+    --w-accent:#EDEDE8; --w-accent-fg:#141413; --w-code:#232321; --w-on:#8FA9F0;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --w-bg:#141413; --w-surface:#1D1D1B; --w-line:#34342F; --w-t1:#EDEDE8; --w-t2:#B4B4AC; --w-t3:#94948C;
+  --w-accent:#EDEDE8; --w-accent-fg:#141413; --w-code:#232321; --w-on:#8FA9F0;
+}
+*{box-sizing:border-box}
+body{background:var(--w-bg);color:var(--w-t1);font-family:"Noto Sans KR",system-ui,sans-serif;font-size:15px;line-height:1.6}
+.wrap{max-width:1280px;margin:0 auto;padding:32px 20px 64px}
+.intro h1{font-size:26px;line-height:1.3;margin:0 0 6px;text-wrap:balance}
+.intro p{margin:0;color:var(--w-t2);max-width:72ch}
+.controls{display:grid;grid-template-columns:auto 1fr;gap:16px 28px;align-items:start;margin:24px 0 14px}
+@media (max-width:760px){.controls{grid-template-columns:1fr}}
+.presets{display:flex;gap:8px}
+.preset{appearance:none;border:1px solid var(--w-line);background:var(--w-surface);color:var(--w-t1);border-radius:10px;padding:10px 18px;font:inherit;font-weight:600;cursor:pointer;white-space:nowrap}
+.preset[aria-pressed="true"]{background:var(--w-accent);color:var(--w-accent-fg);border-color:var(--w-accent)}
+.layers{display:flex;flex-wrap:wrap;gap:8px}
+.layer{display:flex;align-items:flex-start;gap:8px;border:1px solid var(--w-line);background:var(--w-surface);border-radius:10px;padding:8px 12px;cursor:pointer;flex:1 1 180px;min-width:0}
+.layer input{margin:4px 0 0;accent-color:var(--w-on);width:16px;height:16px;flex:none}
+.layer b{display:block;font-size:14px}
+.layer small{display:block;color:var(--w-t3);font-size:12px;line-height:1.45}
+.preset:focus-visible,.layer:focus-within,.copy:focus-visible,.scale-btn:focus-visible{outline:2px solid #3B82F6;outline-offset:2px}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0 0 10px;color:var(--w-t3);font-size:13px;flex-wrap:wrap}
+.scale-btn{appearance:none;border:1px solid var(--w-line);background:var(--w-surface);color:var(--w-t1);border-radius:8px;padding:6px 12px;font:inherit;font-size:13px;cursor:pointer}
+.viewport{overflow:hidden;border-radius:12px;border:1px solid var(--w-line);background:#fff}
+.viewport.full{overflow-x:auto}
+.stage{width:1920px;height:1080px;transform-origin:0 0}
+.prompt{margin-top:22px;background:var(--w-surface);border:1px solid var(--w-line);border-radius:12px;padding:18px 20px}
+.prompt-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px;flex-wrap:wrap}
+.prompt h2{font-size:17px;margin:0}
+.prompt p.sub{margin:2px 0 0;color:var(--w-t3);font-size:13px}
+.copy{appearance:none;border:none;background:var(--w-accent);color:var(--w-accent-fg);border-radius:8px;padding:8px 14px;font:inherit;font-size:14px;font-weight:600;cursor:pointer}
+.prompt pre{margin:0;white-space:pre-wrap;word-break:keep-all;background:var(--w-code);border-radius:8px;padding:14px 16px;font-family:"Noto Sans KR",system-ui,sans-serif;font-size:14px;line-height:1.7;color:var(--w-t1);max-height:420px;overflow:auto}
+.note{margin-top:18px;color:var(--w-t3);font-size:13px;max-width:82ch}
+
+/* ================= mockup: base = 지금 화면 ================= */
+.mk{--fixfill:#B91C1C;--keepfill:#1D4ED8;--page:#FFFFFF;--t1:#111827;--t2:#4B5563;--t3:#6B7280;--line:#E5E7EB;--fix:#B91C1C;--keep:#1D4ED8;
+  --font:system-ui,"Noto Sans KR",sans-serif;--num:inherit;
+  width:1920px;height:1080px;display:grid;grid-template-columns:240px 1fr;background:var(--page);color:var(--t1);font-family:var(--font);font-size:15px;line-height:1.5;overflow:hidden;position:relative}
+.mk *{box-sizing:border-box}
+.mk .num{font-family:var(--num);font-variant-numeric:tabular-nums}
+.mk .fixc{color:var(--fix)} .mk .keepc{color:var(--keep)}
+.mk-side{background:#fff;border-right:1px solid var(--line);padding:28px 16px;display:flex;flex-direction:column;position:relative;z-index:1}
+.mk-brand{font-weight:700;font-size:18px;padding:0 12px;margin-bottom:36px}
+.mk-group{font-size:12px;color:var(--t3);padding:0 12px;margin:0 0 6px}
+.mk-nav{list-style:none;margin:0 0 28px;padding:0}
+.mk-nav li{padding:8px 12px;border-radius:8px;color:var(--t2);margin-bottom:2px}
+.mk-nav li.on{background:#F3F4F6;color:var(--keep);font-weight:600;box-shadow:inset 2px 0 0 var(--keep)}
+.mk-side .foot{margin-top:auto;color:var(--t2);padding:12px;border-top:1px solid var(--line)}
+.mk-main{display:flex;flex-direction:column;min-width:0;position:relative;z-index:1}
+.mk-top{height:76px;display:flex;align-items:center;gap:20px;padding:0 40px;border-bottom:1px solid var(--line)}
+.mk-search{display:flex;align-items:center;gap:10px;width:480px;height:44px;padding:0 5px 0 14px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--t3)}
+.mk-search .ph{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mk-search .btn{flex:none}
+.mk-top .game{color:var(--t3);font-size:13px}.mk-top .game b{color:var(--t1);font-weight:600}
+.mk-top .status{margin-left:auto;color:var(--t3);font-size:13px;display:flex;align-items:center;gap:8px}
+.mk-top .status i{width:8px;height:8px;border-radius:50%;background:#16A34A}
+.mk-head{display:flex;gap:40px;align-items:flex-start;padding:28px 40px 22px}
+.mk-head .text{flex:1;min-width:0}
+.mk-head h1{margin:0 0 8px;font-size:30px;line-height:1.3;font-weight:700}
+.mk-head h1 em{font-style:normal}
+.mk-meta{display:flex;gap:16px;color:var(--t3);font-size:13px;margin-bottom:10px}
+.mk-dek{margin:0;color:var(--t2);max-width:92ch;font-size:15px}
+.mk-actions{display:flex;gap:8px;align-items:center;padding-top:4px}
+.btn{height:38px;display:inline-flex;align-items:center;gap:6px;padding:0 14px;border-radius:6px;font-size:14px;white-space:nowrap;font-weight:500}
+.btn.ghost{color:var(--t1);border:1px solid var(--line);background:#fff}
+.btn.dark{background:#111827;color:#fff}
+.mk-search .btn{height:34px}
+.mk-body{flex:1;display:grid;grid-template-columns:1fr 400px;gap:0;padding:0 40px 0;min-height:0}
+.card{background:#fff;border:1px solid var(--line);border-radius:8px 0 0 8px;min-width:0;display:flex;flex-direction:column}
+.insp{background:#fff;border:1px solid var(--line);border-left:none;border-radius:0 8px 8px 0;padding:22px;display:flex;flex-direction:column;gap:0;overflow:hidden}
+.card-head{display:flex;justify-content:space-between;align-items:flex-start;padding:20px 22px 8px;border-bottom:1px solid var(--line)}
+.card-head h2,.insp h2{margin:0;font-size:17px;font-weight:700}
+.card-head p{margin:2px 0 0;color:var(--t3);font-size:13px}
+.seg{display:flex;padding:3px;border-radius:8px;background:#F3F4F6;border:1px solid var(--line);gap:2px;font-size:13px}
+.seg span{padding:5px 12px;border-radius:6px;color:var(--t2)}
+.seg span.on{background:#111827;color:#fff;font-weight:600}
+.chart{padding:4px 22px 0}
+.chart svg{display:block;width:100%;height:auto}
+.card-foot{margin-top:auto;display:flex;justify-content:space-between;padding:10px 22px 14px;color:var(--t3);font-size:12px;border-top:1px solid var(--line)}
+.sec{padding:16px 0;border-top:1px solid var(--line)}
+.sec:first-child{padding-top:0;border-top:none}
+.insp .tag{font-size:13px;color:var(--t3);margin-top:2px}.insp .tag b{color:var(--fix);font-weight:600}
+.insp h3{margin:0 0 10px;font-size:14px;color:var(--t1);font-weight:600}
+.tiles{display:flex;justify-content:space-between;margin-bottom:8px}
+.tile{display:flex;align-items:baseline;gap:6px}
+.tile.f{color:var(--fix)} .tile.k{color:var(--keep)}
+.tile .big{font-size:26px;font-weight:700;line-height:1.1}
+.tile .lab,.tile .pct{font-size:13px}
+.tag .pill{font-weight:600;color:var(--fix)}
+.split-nums .big{font-size:26px;font-weight:700;line-height:1}
+.split-nums small{font-size:13px;margin-left:6px}
+.split-nums .lab{font-size:13px;margin-right:6px}
+.split{display:flex;height:8px;overflow:hidden;gap:2px}
+.split i{display:block}
+.split .f{background:var(--fixfill)} .split .k{background:var(--keepfill)}
+.insp .expl{margin:10px 0 0;font-size:13px;color:var(--t2)}
+.buckets{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;align-items:end}
+.bk{display:flex;flex-direction:column;align-items:center;gap:6px}
+.bk .v{font-size:13px;font-weight:600;color:var(--fix)}.bk .v.na{color:var(--t3);font-weight:400}
+.bk .col{width:100%;height:70px;display:flex;align-items:flex-end;background:#F9FAFB;border:1px solid var(--line)}
+.bk .col i{display:block;width:100%;background:var(--fixfill)}
+.bk .col.empty{background:#fff}
+.bk .k{font-size:12px;color:var(--t3);white-space:nowrap}
+.insp .sum{margin:0}
+.insp .more{margin-top:6px;font-size:13px;color:var(--keep)}
+.quote{margin:0;font-size:14px;position:relative}
+.quote-meta{font-size:12px;color:var(--t3)}
+.insp-actions{display:flex;gap:8px;margin-top:auto;padding-top:14px}
+.insp-actions .btn{height:36px;font-size:13px}
+
+/* ---- 1. 바탕과 빛 ---- */
+.mk.L-bg{--page:#F5F6F8;
+  background:
+    radial-gradient(900px 520px at 12% -8%, rgba(255,255,255,.95), rgba(255,255,255,0) 65%),
+    radial-gradient(1100px 620px at 92% -12%, rgba(206,216,255,.42), rgba(206,216,255,0) 62%),
+    radial-gradient(900px 700px at 70% 115%, rgba(236,228,255,.35), rgba(236,228,255,0) 60%),
+    #F5F6F8}
+.mk.L-bg::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.35;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 0 0.55  0 0 0 .08 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+.mk.L-bg .mk-side{background:rgba(255,255,255,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-right:1px solid rgba(15,23,42,.06)}
+.mk.L-bg .mk-side .foot{border-top-color:rgba(15,23,42,.06)}
+.mk.L-bg .mk-top{border-bottom-color:transparent}
+
+/* ---- 2. 표면과 그림자 ---- */
+.mk.L-surface .mk-body{gap:20px}
+.mk.L-surface .card,.mk.L-surface .insp{border:1px solid rgba(15,23,42,.06);border-radius:18px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 1px 1px rgba(15,23,42,.03),0 2px 6px rgba(15,23,42,.03),0 18px 40px -18px rgba(15,23,42,.14)}
+.mk.L-surface .card-head{border-bottom:none;padding:24px 26px 6px}
+.mk.L-surface .card-foot{border-top:none;padding:10px 26px 18px}
+.mk.L-surface .chart{padding:4px 26px 0}
+.mk.L-surface .insp{padding:26px}
+.mk.L-surface .btn{border-radius:10px}
+.mk.L-surface .btn.ghost{border-color:rgba(15,23,42,.08);box-shadow:0 1px 2px rgba(15,23,42,.05)}
+.mk.L-surface .btn.dark.primary{background:linear-gradient(180deg,#2B3342 0%,#121826 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 1px 2px rgba(17,24,39,.25),0 8px 18px -8px rgba(17,24,39,.45)}
+.mk.L-surface .mk-search{border-radius:14px;border-color:rgba(15,23,42,.07);box-shadow:0 1px 2px rgba(15,23,42,.04),0 10px 26px -14px rgba(15,23,42,.16)}
+.mk.L-surface .mk-search .btn{border-radius:10px}
+.mk.L-surface .mk-nav li.on{background:#fff;box-shadow:0 1px 2px rgba(15,23,42,.06),0 0 0 1px rgba(15,23,42,.05),0 6px 14px -8px rgba(15,23,42,.14)}
+.mk.L-surface .seg{border:none;background:rgba(15,23,42,.045);border-radius:11px}
+.mk.L-surface .seg span{border-radius:8px}
+.mk.L-surface .bk .col{border:none;border-radius:6px;background:#F2F4F7}
+.mk.L-surface .bk .col i{border-radius:6px}
+.mk.L-surface .split{border-radius:99px;height:10px}
+.mk.L-surface .insp-actions .btn{height:38px}
+
+/* ---- 3. 글꼴과 가독성 ---- */
+.mk.L-type{--font:"Noto Sans KR",system-ui,sans-serif;--num:"Manrope","Noto Sans KR",sans-serif;word-break:keep-all;letter-spacing:-.006em}
+.mk.L-type .mk-head h1{font-size:36px;line-height:1.22;letter-spacing:-.03em;font-weight:700}
+.mk.L-type .mk-brand{letter-spacing:-.02em}
+.mk.L-type .mk-meta{font-size:13px}
+.mk.L-type .mk-dek{font-size:16px;line-height:1.75;max-width:72ch}
+.mk.L-type .mk-group{font-size:13px;font-weight:600;letter-spacing:.02em}
+.mk.L-type .quote-meta{font-size:13px}
+.mk.L-type .card-head h2{font-size:18px;letter-spacing:-.015em}
+.mk.L-type .card-head p,.mk.L-type .card-foot{font-size:13px}
+.mk.L-type .insp h2{font-size:24px;letter-spacing:-.025em}
+.mk.L-type .insp .tag{font-size:14px}
+.mk.L-type .insp h3{font-size:13px;font-weight:600;color:var(--t2);letter-spacing:.01em}
+.mk.L-type .tile .big{font-size:40px;letter-spacing:-.035em}
+.mk.L-type .tile .pct{font-weight:600}
+.mk.L-type .insp .expl{font-size:14px;line-height:1.65}
+.mk.L-type .bk .v{font-family:var(--num);font-size:14px;font-weight:700}
+.mk.L-type .bk .k{font-size:13px}
+.mk.L-type .insp .sum{font-size:16px;line-height:1.65;font-weight:500}
+.mk.L-type .quote{font-size:15px;line-height:1.7}
+
+/* ---- 4. 색감 ---- */
+.mk.L-color{--t1:#0F172A;--t2:#475569;--t3:#64748B;--line:#E2E8F0;--fix:#E11D48;--keep:#3B5BDB;--fixfill:#F43F5E;--keepfill:#4263EB}
+.mk.L-color .btn.dark.sb{background:#F1F5F9;color:var(--t1)}
+.mk.L-color .seg span.on{background:#fff;color:var(--t1);box-shadow:0 1px 2px rgba(15,23,42,.08),0 0 0 1px rgba(15,23,42,.04)}
+.mk.L-color .btn.dark.act{background:#FFF1F3;color:#BE123C}
+.mk.L-color .mk-nav li.on{color:var(--t1);box-shadow:none}
+.mk.L-color .bk .col i{background:var(--fixfill)}
+.mk.L-color .split .f{background:var(--fixfill)} .mk.L-color .split .k{background:var(--keepfill)}
+.mk.L-color .insp .more{color:var(--keep)}
+.mk.L-color .bk .col.empty{background:repeating-linear-gradient(135deg,#EEF2F6 0 5px,transparent 5px 10px)}
+.mk.L-color .tag .pill{color:#E11D48}
+
+/* ---- 5. 데이터 마크 ---- */
+.mk.L-data .tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.mk.L-data .tile{flex-direction:column;align-items:flex-start;gap:2px;padding:14px 16px 12px;border-radius:14px}
+.mk.L-data .tile.f{background:linear-gradient(180deg,#FFF6F7 0%,#FFEDF0 100%);box-shadow:inset 0 0 0 1px rgba(244,63,94,.10)}
+.mk.L-data .tile.k{background:linear-gradient(180deg,#F5F7FF 0%,#ECF0FF 100%);box-shadow:inset 0 0 0 1px rgba(66,99,235,.10);justify-content:flex-start}
+.mk.L-data .tile .lab{order:0;font-weight:600;font-size:13px}
+.mk.L-data .tile.f .lab{color:#BE123C} .mk.L-data .tile.k .lab{color:#3B5BDB}
+.mk.L-data .tile .big{order:1;margin:0}
+.mk.L-data .tile .pct{order:2;margin:0;font-size:13px}
+.mk.L-data .split{height:10px;border-radius:99px;gap:3px}
+.mk.L-data .split .f{background:linear-gradient(90deg,#F43F5E,#FF8A98);border-radius:99px}
+.mk.L-data .split .k{background:linear-gradient(90deg,#7B93FF,#4263EB);border-radius:99px}
+.mk.L-data .bk .col{border:none;border-radius:10px;background:linear-gradient(180deg,#F8FAFC,#F1F5F9);height:84px;overflow:visible}
+.mk.L-data .bk .col i{border-radius:10px 10px 4px 4px;background:linear-gradient(180deg,#FF95A3 0%,#F43F5E 70%,#E8354F 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 8px 16px -8px rgba(244,63,94,.55)}
+.mk.L-data .bk.max .col i{box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 10px 22px -8px rgba(244,63,94,.75)}
+.mk.L-data .bk .col.empty{background:repeating-linear-gradient(135deg,#EEF2F6 0 5px,#F8FAFC 5px 10px)}
+.mk.L-data .tag .pill{background:#FFF1F3;color:#BE123C;padding:2px 10px;border-radius:99px;margin-right:4px;box-shadow:inset 0 0 0 1px rgba(244,63,94,.14)}
+
+/* ---- 6. 디테일 ---- */
+.mk.L-detail .mk-head h1 em.fixc{background:linear-gradient(transparent 64%,rgba(244,63,94,.14) 64%,rgba(244,63,94,.14) 92%,transparent 92%)}
+.mk.L-detail .mk-head h1 em.keepc{background:linear-gradient(transparent 64%,rgba(66,99,235,.13) 64%,rgba(66,99,235,.13) 92%,transparent 92%)}
+.mk.L-detail .mk-top .status i{box-shadow:0 0 0 4px rgba(22,163,74,.14),0 0 10px rgba(22,163,74,.45)}
+.mk.L-detail .sec{border-top:none;position:relative}
+.mk.L-detail .sec+.sec::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,rgba(15,23,42,0),rgba(15,23,42,.08) 15%,rgba(15,23,42,.08) 85%,rgba(15,23,42,0))}
+.mk.L-detail .callout{padding:14px 16px;border-radius:14px;background:linear-gradient(135deg,#F5F7FF 0%,#FAF6FF 100%);box-shadow:inset 0 0 0 1px rgba(99,102,241,.12)}
+.mk.L-detail .ai h3::before{content:"✦";margin-right:6px;background:linear-gradient(135deg,#4263EB,#A855F7);-webkit-background-clip:text;background-clip:text;color:transparent}
+.mk.L-detail .quote{padding:14px 16px 12px 44px;background:linear-gradient(180deg,#FAFBFC,#F4F6F9);border-radius:14px}
+.mk.L-detail .quote::before{content:"“";position:absolute;left:14px;top:2px;font-family:Georgia,serif;font-size:44px;line-height:1;color:rgba(66,99,235,.30)}
+
+/* ---- 7. 강약 조절 ---- */
+.mk.L-refine{letter-spacing:0}
+.mk.L-refine .mk-head h1{letter-spacing:-.025em}
+.mk.L-refine .mk-dek{line-height:1.6}
+.mk.L-refine .insp .expl{line-height:1.6}
+.mk.L-refine .tile .big{font-size:44px;font-variant-numeric:proportional-nums;letter-spacing:-.02em}
+.mk.L-refine .bk .col{width:30px;margin:0 auto;border-radius:8px 8px 0 0}
+.mk.L-refine .bk .col i{border-radius:8px 8px 0 0}
+.mk.L-refine .bk:not(.max) .col i{background:linear-gradient(180deg,#FFC9D1 0%,#FB9AA8 100%);box-shadow:none}
+.mk.L-refine .bk:not(.max) .v{color:var(--t2)}
+.mk.L-refine .buckets{position:relative;padding-bottom:0}
+.mk.L-refine .bk .col{box-shadow:0 1px 0 #CBD5E1}
+.mk.L-refine .card,.mk.L-refine .insp{box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 1px 1px rgba(40,52,110,.035),0 3px 8px rgba(40,52,110,.035),0 24px 48px -24px rgba(40,52,110,.16)}
+@supports (color: oklch(0 0 0)){
+  .mk.L-refine{--fixfill:oklch(64.5% 0.246 16.4);--keepfill:oklch(55% 0.215 268)}
+  .mk.L-refine .split .f{background:linear-gradient(90deg,oklch(62% 0.25 16),oklch(74% 0.17 12))}
+  .mk.L-refine .split .k{background:linear-gradient(90deg,oklch(70% 0.15 270),oklch(54% 0.22 268))}
+  .mk.L-refine .bk.max .col i{background:linear-gradient(180deg,oklch(76% 0.16 12) 0%,oklch(64.5% 0.246 16.4) 70%,oklch(60% 0.24 18) 100%)}
+}
+/* ---- 8. 움직임과 반응 ---- */
+@keyframes mkGrow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes mkGrowX{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.mk.L-motion .bk .col i{transform-origin:bottom;animation:mkGrow .6s cubic-bezier(.2,.8,.2,1) both}
+.mk.L-motion .bk:nth-child(3) .col i{animation-delay:.06s}.mk.L-motion .bk:nth-child(4) .col i{animation-delay:.12s}
+.mk.L-motion .split i{transform-origin:left;animation:mkGrowX .6s cubic-bezier(.2,.8,.2,1) both}
+.mk.L-motion .split .k{transform-origin:right}
+.mk .chart .pt,.mk .chart .tip{transition:opacity .16s ease}
+.mk .chart .tip{opacity:0;pointer-events:none}
+.mk.L-motion .chart svg:hover .pt:not(.hl){opacity:.4}
+.mk.L-motion .chart svg .pt:not(.hl):hover{opacity:1}
+.mk.L-motion .chart svg .pt:hover .tip{opacity:1}
+.mk.L-motion .chart .pt{cursor:pointer}
+.mk.L-motion .btn,.mk.L-motion .mk-nav li,.mk.L-motion .seg span{transition:transform .15s ease,box-shadow .15s ease,background-color .15s ease;cursor:pointer}
+.mk.L-motion .btn:hover{transform:translateY(-1px)}
+.mk.L-motion .btn.ghost:hover{box-shadow:0 2px 4px rgba(15,23,42,.06),0 6px 14px -8px rgba(15,23,42,.18)}
+.mk.L-motion .mk-nav li:not(.on):hover{background:rgba(15,23,42,.04)}
+.mk.L-motion .seg span:not(.on):hover{background:rgba(255,255,255,.7)}
+@media (prefers-reduced-motion: reduce){.mk *,.mk{animation:none!important;transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="intro">
+    <h1>같은 화면, 포장만 바꾸기</h1>
+    <p>구성과 데이터는 그대로입니다. 바탕, 표면, 글꼴, 색, 데이터 마크, 디테일, 강약 조절, 움직임을 한 층씩 켜 보면서 각 층이 무엇을 바꾸는지 확인하세요. 켠 층에 맞춰 아래에 AI에게 줄 지시문이 만들어집니다.</p>
+  </header>
+
+  <div class="controls">
+    <div class="presets" role="group" aria-label="미리 보기">
+      <button class="preset" id="p-now" type="button" aria-pressed="false">지금 화면</button>
+      <button class="preset" id="p-all" type="button" aria-pressed="true">포장 후</button>
+    </div>
+    <div class="layers" id="layers"></div>
+  </div>
+
+  <div class="bar">
+    <span id="scale-label"></span>
+    <button class="scale-btn" id="scale-toggle" type="button">실제 크기로 보기</button>
+  </div>
+  <div class="viewport" id="viewport"><div class="stage" id="stage"></div></div>
+
+  <section class="prompt" aria-labelledby="prompt-title">
+    <div class="prompt-head">
+      <div><h2 id="prompt-title">AI에게 줄 지시문</h2><p class="sub">켠 층만 들어갑니다. 그대로 복사해서 Codex에 붙여넣으면 됩니다.</p></div>
+      <button class="copy" id="copy" type="button">복사</button>
+    </div>
+    <pre id="prompt-text" tabindex="0"></pre>
+  </section>
+  <p class="note">'지금 화면'은 공유해주신 스크린샷을 비슷하게 다시 그린 것입니다. 점 좌표는 스크린샷에서 읽은 추정값이고, 최적화·팰 디자인·가격·오픈월드만 화면에 적힌 값입니다. 목업 글꼴은 Noto Sans KR과 Manrope이며, 앱에 Pretendard가 있다면 그대로 써도 됩니다.</p>
+</div>
+
+<script>
+const LAYERS=[
+  {id:'bg',name:'바탕과 빛',hint:'옅은 빛 번짐, 질감, 반투명 사이드바',
+   say:'바탕: 순백(#FFFFFF) 대신 #F5F6F8을 쓰고, 왼쪽 위에는 흰 빛, 오른쪽 위에는 아주 옅은 청보라 빛(투명도 40% 이하)이 넓게 번지게 해줘. 그 위에 거의 안 보이는 노이즈 질감(불투명도 3% 내외)을 얹어줘. 사이드바는 반투명 흰색(55%)에 배경 흐림 14px, 상단바 아래 구분선은 없애줘.'},
+  {id:'surface',name:'표면과 그림자',hint:'떠 있는 카드, 3겹 그림자, 윗면 하이라이트',
+   say:'표면: 차트와 오른쪽 패널을 20px 간격으로 떨어진 두 장의 카드로 만들고, 모서리 18px, 테두리는 검정 6% 투명도의 가는 선으로 해줘. 그림자는 3겹(1px 아주 가깝게, 2~6px 가깝게, 40px 넓고 흐리게, 가장 진한 층도 불투명도 14% 이하)으로 은은하게 하고, 카드 윗면 안쪽에 1px 흰 하이라이트를 넣어줘. 카드 안의 가로 구분선은 없애고 여백으로 나눠줘. 버튼 모서리는 10px, 주요 버튼은 위가 살짝 밝은 세로 그라데이션과 아래로 떨어지는 작은 그림자를 줘.'},
+  {id:'type',name:'글꼴과 가독성',hint:'한글 단어 안 끊김, 최소 13px, 넉넉한 줄간격',
+   say:'글꼴과 가독성: 한글은 Noto Sans KR(또는 Pretendard), 숫자는 Manrope에 고정폭 숫자(tabular-nums)를 써줘. 한글 문장이 단어 중간에서 끊기지 않게 word-break: keep-all을 전체에 적용해줘. 글자 크기는 13·14·15·16·18·24·36·44px 여덟 단계만 쓰고 13px 미만은 없애줘. 본문은 16px에 줄간격 1.65~1.75, 요약 문단은 한 줄 72자 이내로 제한해줘. 제목 36px 굵게 자간 -3%, 오른쪽 패널 제목 24px, 큰 숫자 40px 자간 -3.5%. 패널 소제목은 13px 굵게, 너무 옅지 않은 보조색(#475569). 차트 눈금은 13px, 점 라벨은 14px 중간 굵기로 키워줘.'},
+  {id:'color',name:'색감',hint:'요즘 톤의 선명한 로즈·블루, 슬레이트 회색',
+   say:'색감: 올드한 진홍·남색 대신 요즘 톤으로 바꿔줘. 색마다 "칠하는 색"과 "글자 색"을 따로 둬: 고칠 것은 칠하기 #F43F5E, 글자 #E11D48 / 지킬 것은 칠하기 #4263EB, 글자 #3B5BDB. 회색은 슬레이트 계열 세 단계(#0F172A 본문, #475569 보조, #64748B 약함)와 선 #E2E8F0만 써줘. 검게 채운 버튼은 한 장 보고서 하나만 남기고, 검색 버튼은 연회색(#F1F5F9), 탭 선택은 흰 칩, 불만 리뷰 버튼은 연분홍(#FFF1F3) 배경에 진한 로즈(#BE123C) 글씨로(연한 배경 위 글씨는 대비 4.5:1 이상). 차트 사분면 배경색은 한눈에 빨강·파랑이 구분되게 유지해줘: 먼저 고칠 것 칸은 로즈 13%→7%, 지킬 강점 칸은 블루 12%→6%의 옅은 대각 그라데이션, 왼쪽 두 칸은 아주 옅은 청회색(#F6F8FB).'},
+  {id:'data',name:'데이터 마크',hint:'그라데이션 막대, 둥근 끝, 은은한 빛, 수치 타일',
+   say:'데이터 마크 스타일링: 막대·점·비율 막대를 단색으로 칠하지 말고 입체감을 줘. 막대는 위쪽이 밝고(#FF95A3) 아래로 갈수록 진해지는(#F43F5E) 세로 그라데이션, 위쪽 모서리 10px 둥글게, 윗면에 1px 흰 하이라이트, 막대 아래로 같은 색의 부드러운 빛 그림자(불투명도 50% 내외, 가장 큰 막대는 조금 더 강하게). 막대 뒤에는 아주 옅은 트랙 배경을 깔아줘. 칭찬/불만 비율 막대는 높이 10px, 양끝 둥글게, 가로 그라데이션. 차트 점은 지도 크기에 비해 작지 않게 키워줘: 일반 점 반지름 7px, 강조 점 반지름 11px(선택 링 18px). 강조 점은 왼쪽 위가 밝은 원형 그라데이션으로 구슬 같은 볼륨을 줘. 오른쪽 패널의 불만 41 / 칭찬 19는 각 색의 아주 옅은 그라데이션 배경을 가진 두 개의 수치 타일로, "고칠 것"은 연분홍 알약 모양 배지로 바꿔줘. 데이터 값과 좌표는 절대 바꾸지 마.'},
+  {id:'detail',name:'디테일',hint:'형광펜 강조, 점 후광, 그림자 라벨, AI 요약 박스',
+   say:'디테일: 제목의 "팰 디자인", "최적화" 아래쪽 절반에 같은 색 13~14% 형광펜 띠를 깔아줘. 차트의 강조 점 두 개에는 부드러운 후광을 주고, 라벨은 테두리 박스 대신 그림자만 있는 흰 칩으로 바꿔줘. 회색 점에는 흰 테두리와 아주 작은 그림자를 줘. 연결 상태 점에 옅은 초록 빛 링, 패널 구분선은 양 끝이 흐려지는 선, AI 요약은 옅은 청보라 그라데이션 박스에 ✦ 표시, 대표 리뷰는 옅은 배경 칩에 큰 따옴표 장식을 넣어줘.'}
+];
+LAYERS.push(
+  {id:'refine',name:'강약 조절',hint:'가는 막대, 가장 큰 값만 진하게, 숫자·자간 보정',
+   say:'강약 조절: 막대는 칸을 꽉 채우지 말고 폭 30px 이하로 가늘게, 위쪽만 둥글게(8px) 하고 바닥 쪽은 각지게 해서 기준선에 붙여줘. 가장 중요한 막대(100시간 이상)만 진한 그라데이션과 빛 그림자를 주고, 나머지 막대는 같은 색의 연한 단계로 낮춰줘. 값 라벨도 강조 막대만 색, 나머지는 보조 글자색. 큰 숫자(41, 19)는 고정폭이 아닌 기본 숫자폭으로 44px. 한글 본문은 자간 0, 줄간격 1.6(큰 제목만 자간을 좁혀). 그림자 색은 순수 검정 대신 화면 톤(남청색)을 섞어줘. 가능하면 강조색은 oklch로 지정해서 최신 모니터에서 더 선명하게 보이게 하고, 지원하지 않는 브라우저를 위해 hex 값을 먼저 적어줘.'},
+  {id:'motion',name:'움직임과 반응',hint:'막대가 자라며 등장, 점에 올리면 나머지 흐려짐',
+   say:'움직임과 반응: 화면이 열릴 때 막대와 비율 막대가 0.6초 동안 바닥(또는 왼쪽)에서 자라나게 하고 막대마다 0.06초씩 늦게 시작해줘. 차트의 점에 마우스를 올리면 나머지 일반 점과 라벨만 불투명도 40%로 흐려지고(강조된 최적화·팰 디자인과 그 라벨은 절대 흐리지 않음), 올린 점 옆에 언급 수와 불만 비율이 담긴 작은 말풍선이 뜨게 해줘(0.16초 전환, 점보다 큰 클릭 영역). 버튼은 올렸을 때 1px 떠오르고 그림자가 살짝 커지게. 움직임 줄이기(prefers-reduced-motion)를 켠 사용자에게는 모든 움직임을 끄고 색 변화만 남겨줘.'}
+);
+const on={bg:true,surface:true,type:true,color:true,data:true,detail:true,refine:true,motion:true};
+
+const TOPICS=[
+  {n:'저장',x:20,y:100,lp:'r'},{n:'버그',x:27,y:93,lp:'l'},{n:'조작',x:20,y:65,lp:'r'},{n:'멀티플레이',x:25,y:60,lp:'l'},
+  {n:'콘텐츠',x:120,y:34,lp:'r'},{n:'건축',x:120,y:12,lp:'l'},{n:'교배',x:27,y:15,lp:'l'},{n:'전투',x:32,y:12.5,lp:'r'},{n:'생존',x:24,y:8,lp:'l'}
+];
+const PAIR=[{n:'가격',x:39,y:10},{n:'오픈월드',x:40,y:10}];
+const FIX={n:'최적화',x:60,y:68,sub:'60건 · 불만 68%'}, KEEP={n:'팰 디자인',x:121,y:8,sub:'121건 · 불만 8%'};
+
+function chart(){
+  const C=on.color, D=on.detail, T=on.type, V=on.data;
+  const fix=C?'#E11D48':'#B91C1C', keep=C?'#3B5BDB':'#1D4ED8', fixF=C?'#F43F5E':'#B91C1C', keepF=C?'#4263EB':'#1D4ED8';
+  const t1=C?'#334155':'#374151', t2=C?'#475569':'#4B5563', t3=C?'#64748B':'#6B7280', gray=C?'#94A3B8':'#6B7280', grid=C?'#EDF1F6':'#E5E7EB';
+  const font=T?'"Noto Sans KR",sans-serif':'system-ui,"Noto Sans KR",sans-serif', num=T?'"Manrope","Noto Sans KR",sans-serif':font;
+  const fs=T?14:13, ft=T?13:12, lw=T?500:400;
+  const W=1100,H=610,l=62,r=28,t=40,b=60,pw=W-l-r,ph=H-t-b, sx=x=>l+x/150*pw, sy=y=>t+(1-y/100)*ph;
+  const f=`font-family='${font}'`, fn=`font-family='${num}'`;
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="주제별 언급 리뷰 수와 불만 비율 산점도. 최적화 60건 불만 68%, 팰 디자인 121건 불만 8%."><defs>
+    <linearGradient id="lF" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${fixF}" stop-opacity=".13"/><stop offset="1" stop-color="${fixF}" stop-opacity=".07"/></linearGradient>
+    <linearGradient id="lK" x1="1" y1="1" x2="0" y2="0"><stop offset="0" stop-color="${keepF}" stop-opacity=".12"/><stop offset="1" stop-color="${keepF}" stop-opacity=".06"/></linearGradient>
+    <radialGradient id="gF" cx="1" cy="0" r="1"><stop offset="0" stop-color="${fixF}" stop-opacity=".09"/><stop offset=".75" stop-color="${fixF}" stop-opacity="0"/></radialGradient>
+    <radialGradient id="gK" cx="1" cy="1" r="1"><stop offset="0" stop-color="${keepF}" stop-opacity=".08"/><stop offset=".75" stop-color="${keepF}" stop-opacity="0"/></radialGradient>
+    <radialGradient id="hF"><stop offset="0" stop-color="${fixF}" stop-opacity=".30"/><stop offset="1" stop-color="${fixF}" stop-opacity="0"/></radialGradient>
+    <radialGradient id="hK"><stop offset="0" stop-color="${keepF}" stop-opacity=".28"/><stop offset="1" stop-color="${keepF}" stop-opacity="0"/></radialGradient>
+    <radialGradient id="bF" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#FFB3BE"/><stop offset=".55" stop-color="${fixF}"/><stop offset="1" stop-color="#D02A48"/></radialGradient>
+    <radialGradient id="bK" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#B4C2FF"/><stop offset=".55" stop-color="${keepF}"/><stop offset="1" stop-color="#2F49C9"/></radialGradient>
+    <filter id="sh" x="-30%" y="-50%" width="160%" height="220%"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#0F172A" flood-opacity=".12"/><feDropShadow dx="0" dy="1" stdDeviation="1" flood-color="#0F172A" flood-opacity=".08"/></filter>
+    <filter id="ms" x="-100%" y="-100%" width="300%" height="300%"><feDropShadow dx="0" dy="1" stdDeviation="1.2" flood-color="#0F172A" flood-opacity=".22"/></filter>
+  </defs>`;
+  const qx=sx(32), qw=sx(150)-sx(32);
+  if(C){ s+=`<rect x="${l}" y="${t}" width="${qx-l}" height="${ph}" fill="#F6F8FB"/><rect x="${qx}" y="${sy(100)}" width="${qw}" height="${sy(50)-sy(100)}" fill="url(#lF)"/><rect x="${qx}" y="${sy(50)}" width="${qw}" height="${sy(0)-sy(50)}" fill="url(#lK)"/>`; }
+  else { s+=`<rect x="${qx}" y="${sy(100)}" width="${qw}" height="${sy(50)-sy(100)}" fill="#FDECEC"/><rect x="${qx}" y="${sy(50)}" width="${qw}" height="${sy(0)-sy(50)}" fill="#EAF1FD"/><rect x="${l}" y="${t}" width="${qx-l}" height="${ph}" fill="#F9FAFB"/>`; }
+  [25,75,100].forEach(v=>s+=`<line x1="${l}" x2="${l+pw}" y1="${sy(v)}" y2="${sy(v)}" stroke="${grid}"/>`);
+  [50,100].forEach(v=>s+=`<line x1="${sx(v)}" x2="${sx(v)}" y1="${t}" y2="${t+ph}" stroke="${grid}"/>`);
+  [0,25,50,75,100].forEach(v=>s+=`<text x="${l-12}" y="${sy(v)+4}" text-anchor="end" font-size="${ft}" fill="${t3}" ${fn}>${v}%</text>`);
+  [0,50,100,150].forEach(v=>s+=`<text x="${sx(v)}" y="${t+ph+22}" text-anchor="middle" font-size="${ft}" fill="${t3}" ${fn}>${v}</text>`);
+  s+=`<text x="${l}" y="${t-18}" font-size="${ft+1}" fill="${t2}" ${f} font-weight="600">불만 비율</text>`;
+  s+=`<text x="${l+pw}" y="${t+ph+48}" text-anchor="end" font-size="${ft+1}" fill="${t2}" ${f} font-weight="600">언급 리뷰 수</text>`;
+  const ref=C?'#B6C0CE':'#9CA3AF';
+  s+=`<line x1="${qx}" x2="${qx}" y1="${t}" y2="${t+ph}" stroke="${ref}" stroke-dasharray="4 4"/>`;
+  s+=`<line x1="${l}" x2="${l+pw}" y1="${sy(50)}" y2="${sy(50)}" stroke="${ref}" stroke-dasharray="4 4"/>`;
+  s+=`<text x="${qx}" y="${t+ph+48}" text-anchor="middle" font-size="${ft}" fill="${t3}" ${f}>중앙값 32건</text>`;
+  s+=`<line x1="${l}" x2="${l+pw}" y1="${t+ph}" y2="${t+ph}" stroke="${C?'#94A3B8':'#6B7280'}"/>`;
+  const q=(x,y,a,txt,col,sub)=>`<text x="${x}" y="${y}" text-anchor="${a}" font-size="${fs}" font-weight="700" fill="${col}" ${f}>${txt}</text>`+(sub?`<text x="${x}" y="${y+19}" text-anchor="${a}" font-size="${ft}" fill="${t3}" ${f}>${sub}</text>`:'');
+  s+=q(l+pw-14,t+24,'end','먼저 고칠 것',fix,'많이 언급 · 불만 우세');
+  s+=q(l+12,t+24,'start','지켜볼 불만',t2);
+  s+=q(l+pw-14,sy(50)+28,'end','지킬 강점',keep,'많이 언급 · 칭찬 우세');
+  s+=q(l+12,sy(50)+28,'start','작은 강점',t2);
+  const mr=V?7:5;
+  const mark=(x,y)=>`<circle cx="${x}" cy="${y}" r="${mr}" fill="${gray}"${D?` stroke="#fff" stroke-width="1.8" filter="url(#ms)"`:''}/>`;
+  const tip=(x,y,name,val)=>{if(!on.motion)return '';const w=Math.ceil(Math.max(name.length*14+26,val.length*7.4+26)),tx=x+w+18>l+pw?x-w-14:x+14,ty=y-50;
+    return `<g class="tip"><rect x="${tx}" y="${ty}" width="${w}" height="40" rx="9" fill="#0F172A"/><text x="${tx+12}" y="${ty+17}" font-size="12.5" font-weight="700" fill="#fff" ${f}>${name}</text><text x="${tx+12}" y="${ty+32}" font-size="11.5" fill="#CBD5E1" ${fn}>${val}</text></g>`;};
+  TOPICS.forEach(p=>{const x=sx(p.x),y=sy(p.y);
+    const lx=p.lp==='r'?x+mr+7:x-mr-7, an=p.lp==='r'?'start':'end';
+    s+=`<g class="pt"><circle cx="${x}" cy="${y}" r="15" fill="transparent"/>`+mark(x,y)+`<text x="${lx}" y="${y+5}" text-anchor="${an}" font-size="${fs}" font-weight="${lw}" fill="${t1}" ${f}>${p.n}</text>`+tip(x,y,p.n,`약 ${p.x}건 · 불만 약 ${p.y}%`)+`</g>`;});
+  PAIR.forEach(p=>{const x=sx(p.x),y=sy(p.y);s+=`<g class="pt"><circle cx="${x}" cy="${y}" r="9" fill="transparent"/>`+mark(x,y)+tip(x,y,p.n,`${p.x}건 · 불만 ${p.y}%`)+`</g>`;});
+  const px=sx(40)+mr+8, py=sy(10);
+  s+=`<text x="${px}" y="${py-3}" font-size="${fs}" font-weight="${lw}" fill="${t1}" ${f}>가격 <tspan ${fn} fill="${t3}">39</tspan></text><text x="${px}" y="${py+15}" font-size="${fs}" font-weight="${lw}" fill="${t1}" ${f}>오픈월드 <tspan ${fn} fill="${t3}">40</tspan></text>`;
+  const hi=(p,col,fillc,halo,ball,sel)=>{const x=sx(p.x),y=sy(p.y);let o='';
+    if(D) o+=`<circle cx="${x}" cy="${y}" r="${V?40:28}" fill="url(#${halo})"/>`;
+    if(sel) o+=`<circle cx="${x}" cy="${y}" r="${V?18:12.5}" fill="${D?'#fff':'none'}" stroke="${fillc}" stroke-width="1.6" ${D?'stroke-opacity=".45"':''}/>`;
+    o+=`<circle cx="${x}" cy="${y}" r="${V?11:7}" fill="${V?`url(#${ball})`:fillc}"${D?` stroke="#fff" stroke-width="2" filter="url(#ms)"`:''}/>`;
+    const bx=x+(V?32:24), by=y-26, bw=p.n.length>3?158:140, bh=52;
+    if(D) o+=`<rect x="${bx}" y="${by}" width="${bw}" height="${bh}" rx="12" fill="#fff" filter="url(#sh)"/>`;
+    else o+=`<rect x="${bx}" y="${by}" width="${bw}" height="${bh}" rx="6" fill="#fff" stroke="${col}" stroke-width="1.2"/>`;
+    if(on.refine){o+=`<circle cx="${bx+19}" cy="${by+16}" r="4.5" fill="${fillc}"/><text x="${bx+30}" y="${by+22}" font-size="${T?17:16}" font-weight="700" fill="#0F172A" ${f}>${p.n}</text>`;}
+    else o+=`<text x="${bx+14}" y="${by+22}" font-size="${T?17:16}" font-weight="700" fill="${col}" ${f}>${p.n}</text>`;
+    o+=`<text x="${bx+14}" y="${by+41}" font-size="${ft}" fill="${t2}" ${fn}>${p.sub}</text>`;return o;};
+  s+=`<g class="pt hl">`+hi(KEEP,keep,keepF,'hK','bK',false)+`</g><g class="pt hl">`+hi(FIX,fix,fixF,'hF','bF',true)+`</g>`;
+  return s+'</svg>';
+}
+
+function mock(){
+  const cls=['mk'].concat(Object.keys(on).filter(k=>on[k]).map(k=>'L-'+k)).join(' ');
+  const ic=p=>`<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">${p}</svg>`;
+  const plus=ic('<path d="M8 3v10M3 8h10"/>'),dl=ic('<path d="M8 2v8M4.5 6.5 8 10l3.5-3.5M3 13h10"/>'),doc=ic('<path d="M4 2h5l3 3v9H4z"/><path d="M6 8h4M6 11h4"/>'),mag=ic('<circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/>'),chat=ic('<path d="M3 3h10v7H7l-3 3v-3H3z"/>');
+  return `<div class="${cls}">
+  <aside class="mk-side">
+    <div class="mk-brand">AI 리뷰데이터 분석</div>
+    <div class="mk-group">프로젝트 관리</div><ul class="mk-nav"><li>전체 프로젝트</li></ul>
+    <div class="mk-group">리뷰 분석 파이프라인</div>
+    <ul class="mk-nav"><li class="on">진단 요약</li><li>심층 분석</li><li>리뷰 원문</li><li>분석 설계</li></ul>
+    <div class="foot">API Key 관리</div>
+  </aside>
+  <div class="mk-main">
+    <div class="mk-top">
+      <div class="mk-search">${mag}<span class="ph">Steam App ID 입력 (예: 1623730)</span><span class="btn dark sb">검색</span></div>
+      <div class="game">분석 중인 게임 <b>팰월드</b></div>
+      <div class="status"><i></i>연결됨 <span class="num">2026-09-24 16:10</span></div>
+    </div>
+    <div class="mk-head">
+      <div class="text">
+        <h1><em class="keepc">팰 디자인</em>은 지키고, <em class="fixc">최적화</em>는 고쳐야 합니다</h1>
+        <div class="mk-meta"><span>팰월드</span><span>한국어 Steam 리뷰</span><span class="num">2026.07.13 – 2026.09.22</span><span>AI 분석 <span class="num">1,343</span>건 / 수집 <span class="num">2,188</span>건</span></div>
+        <p class="mk-dek">Palworld는 팰 디자인, 건축, 오픈월드에 대한 긍정적인 평가가 많으며, 특히 플레이 시간이 길어질수록 추천율이 <span class="num">97.7%</span>까지 상승합니다. 다만 저장 오류, 최적화 부족, 불편한 조작감, 멀티플레이 불안정성, 제한적인 건축 시스템 등은 개선이 필요합니다.</p>
+      </div>
+      <div class="mk-actions"><span class="btn ghost">${plus}추가 수집</span><span class="btn ghost">${dl}원문</span><span class="btn ghost">${dl}분석 결과</span><span class="btn dark primary">${doc}한 장 보고서</span></div>
+    </div>
+    <div class="mk-body">
+      <section class="card">
+        <div class="card-head"><div><h2>우선순위 매트릭스</h2><p>언급량 × 불만 비율 · AI 분석 리뷰 <span class="num">1,343</span>건 · 주제를 눌러 근거 확인</p></div>
+          <div class="seg"><span class="on">우선순위 매트릭스</span><span>칭찬·불만 막대</span></div></div>
+        <div class="chart">${chart()}</div>
+        <div class="card-foot"><span>한 리뷰가 여러 주제에 들어갈 수 있습니다</span><span>ⓘ 분석 기준</span></div>
+      </section>
+      <aside class="insp">
+        <div class="sec"><h2>최적화</h2><div class="tag"><b class="pill">고칠 것</b> · 게임 성능 및 렉</div></div>
+        <div class="sec"><h3>칭찬과 불만</h3>
+          <div class="tiles"><div class="tile f"><span class="lab">불만</span><span class="big num">41</span><span class="pct num">68%</span></div><div class="tile k"><span class="lab">칭찬</span><span class="big num">19</span><span class="pct num">32%</span></div></div>
+          <div class="split"><i class="f" style="width:68%"></i><i class="k" style="width:32%"></i></div>
+          <p class="expl">불만을 쓴 41건 중 29건은 그래도 게임을 추천했습니다. 떠나게 만들 정도의 불만은 아닐 수 있습니다.</p></div>
+        <div class="sec"><h3>이 불만이 나오는 플레이 구간</h3>
+          <div class="buckets">
+            <div class="bk"><span class="v na">표본 적음</span><div class="col empty"></div><span class="k">2시간 미만</span></div>
+            <div class="bk"><span class="v">1.5%</span><div class="col"><i style="height:${1.5/4*100}%"></i></div><span class="k">2–20시간</span></div>
+            <div class="bk"><span class="v">2.8%</span><div class="col"><i style="height:${2.8/4*100}%"></i></div><span class="k">20–100시간</span></div>
+            <div class="bk max"><span class="v">3.7%</span><div class="col"><i style="height:${3.7/4*100}%"></i></div><span class="k">100시간 이상</span></div>
+          </div>
+          <p class="expl">구간별 AI 분석 리뷰 중 이 주제 불만 비율 · 30건 미만 구간은 표시하지 않음</p></div>
+        <div class="sec ai"><h3>AI 요약</h3><div class="callout"><p class="sum">높은 사양에도 불구하고 렉, 프레임 드랍, 튕김 현상이 발생합니다.</p><div class="more">▸ 원인과 개선 제안</div></div></div>
+        <div class="sec"><h3>대표 리뷰 <span class="quote-meta">게임 추천 · 213시간 플레이</span></h3>
+          <blockquote class="quote">확실히 정식 버전이라 게임성이 더 나아진 듯 싶은데 아직도 ○같은 최적화는 고치질 못했네 그래도 재밌습니다 ^-^</blockquote></div>
+        <div class="insp-actions"><span class="btn dark act">${chat}불만 리뷰 41건</span><span class="btn ghost">${chat}칭찬 리뷰 19건</span></div>
+      </aside>
+    </div>
+  </div>
+</div>`;
+}
+
+function promptText(){
+  const act=LAYERS.filter(L=>on[L.id]);
+  if(!act.length) return '위에서 층을 하나 이상 켜면 지시문이 만들어집니다.';
+  return ['game-tool-visual-director를 사용해줘. 화면 구성, 데이터, 차트 종류, 문구는 그대로 두고 표면(포장)만 바꿔줘. 단, 차트 제목은 "우선순위 매트릭스", 부제는 "언급량 × 불만 비율"로 바꿔줘.',
+    '방향: 밝고, 고급스럽고 차분하게, 하지만 색은 요즘 톤으로 선명하게. 그림자·빛 같은 효과는 은은하게, 자세히 봐야 보이는 정도로.','',
+    ...act.map(L=>'· '+L.say),'',
+    '적용한 뒤 같은 화면, 같은 데이터, 같은 선택 상태로 렌더링해서 전후 스크린샷을 비교해줘. 본문 글자 대비 4.5:1 이상, 한글 단어가 중간에서 끊긴 곳이 없는지도 확인해줘.'].join('\n');
+}
+
+const stage=document.getElementById('stage'),vp=document.getElementById('viewport'),box=document.getElementById('layers');
+box.innerHTML=LAYERS.map((L,i)=>`<label class="layer"><input type="checkbox" id="L-${L.id}" data-id="${L.id}" checked><span><b>${i+1}. ${L.name}</b><small>${L.hint}</small></span></label>`).join('');
+let full=false;
+function fit(){const s=full?1:Math.min(1,vp.clientWidth/1920);stage.style.transform=`scale(${s})`;vp.style.height=(1080*s+(full?2:0))+'px';vp.classList.toggle('full',full);
+  document.getElementById('scale-label').textContent=full?'실제 크기 (가로로 스크롤)':`1920×1080 화면을 ${Math.round(s*100)}%로 축소해서 보여줍니다`;}
+function render(){stage.innerHTML=mock();document.getElementById('prompt-text').textContent=promptText();
+  const n=Object.values(on).filter(Boolean).length;
+  document.getElementById('p-now').setAttribute('aria-pressed',String(n===0));document.getElementById('p-all').setAttribute('aria-pressed',String(n===LAYERS.length));
+  LAYERS.forEach(L=>document.getElementById('L-'+L.id).checked=on[L.id]);}
+box.addEventListener('change',e=>{const id=e.target.dataset.id;if(id){on[id]=e.target.checked;render();}});
+document.getElementById('p-now').addEventListener('click',()=>{LAYERS.forEach(L=>on[L.id]=false);render();});
+document.getElementById('p-all').addEventListener('click',()=>{LAYERS.forEach(L=>on[L.id]=true);render();});
+document.getElementById('scale-toggle').addEventListener('click',e=>{full=!full;e.currentTarget.textContent=full?'화면에 맞추기':'실제 크기로 보기';fit();});
+document.getElementById('copy').addEventListener('click',e=>{const b=e.currentTarget,txt=document.getElementById('prompt-text').textContent;
+  const done=()=>{b.textContent='복사됨';setTimeout(()=>b.textContent='복사',1600);};
+  const fallback=()=>{const r=document.createRange();r.selectNodeContents(document.getElementById('prompt-text'));const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='선택됨, Ctrl+C로 복사';setTimeout(()=>b.textContent='복사',2400);};
+  try{navigator.clipboard.writeText(txt).then(done,fallback);}catch(err){fallback();}});
+window.addEventListener('resize',fit);
+render();fit();
+</script>

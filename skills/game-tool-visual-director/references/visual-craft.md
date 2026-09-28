@@ -2,7 +2,7 @@
 
 Use after information architecture and Visual Intent are established. Judge the rendered screen first; inspect implementation values when a craft diagnosis needs precision. A coherent structure can still feel unfinished, and a polished surface can still communicate the wrong thing. Record these failures separately.
 
-For analytical charts and dashboards, use [visualization craft](visualization-craft.md) for concrete palette, type, layering, overlap, and state choices. If the composition is already accepted, craft is the primary improvement task; do not reset the information structure merely to demonstrate a redesign.
+For analytical charts and dashboards, use [visualization craft](visualization-craft.md) for concrete palette, type, layering, overlap, and state choices. If the composition is already accepted, craft is the primary improvement task; do not reset the information structure merely to demonstrate a redesign. For the surface itself (canvas, elevation, type, color, data-mark styling, details, emphasis, and motion), use [surface polish](surface-polish.md).
 
 ## Craft: is the execution controlled?
 

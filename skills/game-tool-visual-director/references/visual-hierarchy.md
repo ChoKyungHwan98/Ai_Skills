@@ -21,7 +21,7 @@ Separate these questions:
 - “뭔가 이상해” (“Something feels off”): identify the first three attention targets, the visual relationship among them, and the expected reading path. Name the mismatch, such as a decorative summary overpowering the actual recommendation.
 - “직관적이지 않아” (“It isn't intuitive”): check whether labels match the user's mental model, the next action is visible, controls are close to their effect, and state or consequences are clear.
 - “시각화가 부족해” (“There isn't enough visualization”): find the comparison, trend, distribution, or relationship currently buried in prose or numbers. A chart is justified only if it answers that question faster or more accurately.
-- “폴리싱해줘” (“Polish it”): diagnose hierarchy and structure first. Then address alignment, type scale, contrast, spacing, consistency, and interaction feedback.
+- “폴리싱해줘” (“Polish it”): diagnose hierarchy and structure first. If the structure is sound or already accepted, run [surface polish](surface-polish.md) across all eight layers rather than adjusting one or two properties.
 - “정보만 모아둔 것 같아” (“It feels like a pile of information”): locate the missing conclusion, grouping, prioritization, or decision path. Consolidate or remove repetitive cards.
 
 These are hypotheses to test against the actual screen, not automatic diagnoses.

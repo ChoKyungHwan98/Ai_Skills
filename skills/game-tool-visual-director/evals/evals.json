@@ -205,6 +205,79 @@
         "Resolve the actual composed foreground/background before assessing the second pair; mark it unverified until then.",
         "Do not equate a color-pair calculation with complete chart readability or accessibility verification."
       ]
+    },
+    {
+      "id": 21,
+      "name": "polish-covers-all-surface-layers",
+      "prompt": "The user has accepted the layout of a review-analytics dashboard (headline claim, priority matrix, topic inspector). They say only: 시각화 폴리싱해줘. The rendered screen uses flat white, grey borders, solid-color bars, small dots, and four black buttons.",
+      "expected_behavior": [
+        "Keep the structure, data, and copy; do not reopen the layout.",
+        "Address all eight surface layers (canvas and light, surface and elevation, type and readability, color, data marks, details, emphasis, motion) with concrete values, or state why a layer needs no change.",
+        "Do not end after one or two property changes such as tick counts or border tweaks.",
+        "Avoid ornaments that attach to no content, such as a decorative logo mark.",
+        "Measure and render before and after; report in plain words and ask for a one-word reaction."
+      ]
+    },
+    {
+      "id": 22,
+      "name": "no-taste-file-offers-choices",
+      "prompt": "A user who says they do not know design asks to make an analytics screen look premium. The project has no taste file or design tokens beyond the current CSS. Decide what to ask before polishing.",
+      "expected_behavior": [
+        "Ask at most three multiple-choice questions in one turn (brightness, mood, intensity) instead of asking the user to describe the design.",
+        "Start from the matching preset and record the answers and chosen values in a project taste file.",
+        "Do not repeat the questions in later passes once the taste file exists."
+      ]
+    },
+    {
+      "id": 23,
+      "name": "plateau-switches-to-preview",
+      "prompt": "Two polish rounds on the same dashboard changed annotation borders and tick counts. The user says: 스킬대로 했는데 제자리걸음이야. Decide the next step.",
+      "expected_behavior": [
+        "Recognize the plateau and stop further local tweaks.",
+        "Produce a layer-toggle preview or two to three visually distinct variants of the same screen and data for the user to choose from.",
+        "Record the choice in the taste file and apply it across all layers."
+      ]
+    },
+    {
+      "id": 24,
+      "name": "reference-technique-not-copy",
+      "prompt": "The user shares a screenshot of another product with purple bars and says: 이거 반영하지 말고 참고만 해. 이 그래프는 밋밋하지 않잖아, 이런 걸 뭐라고 해? 우리 빨간 막대는 밋밋해.",
+      "expected_behavior": [
+        "Name the technique (data-mark styling: tonal gradient, rounded data end, faint track, capped bar width) in plain words.",
+        "Apply the principle to the project's own bars and palette without copying the reference's colors, layout, or brand.",
+        "Keep data values and bar heights unchanged and add the technique to the taste file vocabulary."
+      ]
+    },
+    {
+      "id": 25,
+      "name": "dated-color-feedback",
+      "prompt": "After a polish pass, the user says the palette looks old (색상이 너무 올드해). The screen uses muted crimson #C0353F and navy #2E59C7 on neutral greys, and the red/blue quadrant zones had been faded to near-invisible gradients.",
+      "expected_behavior": [
+        "Move to vivid modern fills (defined in OKLCH with a hex fallback) with a separate darker text step per hue that passes 4.5:1 on its background.",
+        "Tint neutrals toward the canvas hue and keep semantic roles unchanged.",
+        "Keep semantic zones that the viewer reads at a glance visibly tinted rather than fading them away.",
+        "Verify computed contrast for changed text pairs."
+      ]
+    },
+    {
+      "id": 26,
+      "name": "hover-keeps-focus-visible",
+      "prompt": "A scatter-based priority matrix dims all other marks when the viewer hovers a point. The user reports that the highlighted topics and their labels fade too, which makes the screen uncomfortable to read.",
+      "expected_behavior": [
+        "Dim only context marks, and keep highlighted or selected marks and their labels at full strength.",
+        "Use a moderate dim level, a short transition, and a hit target larger than the mark.",
+        "Check the hover state live rather than from a still screenshot, and respect reduced-motion settings."
+      ]
+    },
+    {
+      "id": 27,
+      "name": "korean-readability-pass",
+      "prompt": "A Korean dashboard splits words across lines (for example 상 / 승합니다), uses 12px grey metadata, and mixes twelve font sizes. The user says typography and readability were ignored.",
+      "expected_behavior": [
+        "Apply word-break: keep-all to Hangul text, raise every size to at least 13px, and reduce the scale to a few defined steps.",
+        "Use line-height around 1.6 with letter-spacing 0 for Hangul body text and limit paragraph width.",
+        "Verify with a rendered check such as the style inventory rather than from CSS alone."
+      ]
     }
   ]
 }

@@ -1,5 +1,16 @@
 # Changes
 
+## 4.0.0 — candidate — 2026-09-28
+
+- Add a surface polish route: once the composition is accepted, a polish pass treats all eight layers (canvas and light, surface and elevation, type and readability, color, data marks, details, emphasis contrast, motion) with concrete values. Changing one or two properties no longer counts as a polish.
+- Settle direction with at most three multiple-choice questions, record it in a project taste file, and start from a reviewed preset (bright, premium and calm, subtle).
+- Switch to a layer-toggle preview or variants when rounds plateau. Name the technique when the user shows a reference, and apply it without copying.
+- Reframe the gradient and shadow caution: they never fix hierarchy, but they are a required surface layer once hierarchy works.
+- Add `scripts/style-inventory.js`, a browser-evaluated count of text sizes, colors, contrast flags, Hangul mid-word breaks, borders, shadows, dark filled controls, and chart-mark fills.
+- Add regression scenarios 21–27 and the surface-polish reference case with before and after renders and user feedback.
+
+Evidence comes from a mockup the user reviewed, not from a candidate run against the real application. An old/candidate comparison is still pending.
+
 ## 3.2.0 — candidate — 2026-09-28
 
 - Selectively synthesize GitHub practices for semantic colors, typography candidates, component feedback, and old/candidate output evaluation, with pinned source revisions and adaptation boundaries.

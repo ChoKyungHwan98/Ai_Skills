@@ -1,8 +1,8 @@
 ---
 name: game-tool-visual-director
-description: Diagnose and redesign information-heavy game planning tools, analytics dashboards, editors, portfolio tools, and AI-assisted productivity interfaces. Use when feedback is vague (such as “뭔가 이상해”, “직관적이지 않아”, “시각화가 부족해”, “폴리싱해줘”, or “정보만 모아둔 것 같아”) or when a screen needs clearer visual direction, information hierarchy, visualization choices, or visual craft. For critique-only requests, stop before implementation.
+description: Diagnose, redesign, and polish information-heavy game planning tools, analytics dashboards, editors, portfolio tools, and AI-assisted productivity interfaces. Use when feedback is vague (such as “뭔가 이상해”, “직관적이지 않아”, “시각화가 부족해”, “폴리싱해줘”, “포장해줘”, “밋밋해”, “색이 올드해”, or “정보만 모아둔 것 같아”) or when a screen needs clearer visual direction, information hierarchy, visualization choices, or surface polish such as color, typography, shadows, light, and chart styling. For critique-only requests, stop before implementation.
 metadata:
-  version: "3.2.0"
+  version: "4.0.0"
 ---
 
 # Game Tool Visual Director
@@ -14,6 +14,12 @@ When the hierarchy already works, visual execution can be the main task. Judge t
 ## Match the requested scope
 
 Distinguish diagnosis, structural redesign, and visual polish. When the user has accepted the composition or chart type, treat it as a protected decision and focus on its execution; briefly flag any demonstrated data or usability defect without reopening the whole design. Infer established goals from the current screen and conversation instead of repeating a design interview. Follow the user's tool choices for the current task. Use complementary skills only when they materially help; do not turn one task's preference into a permanent tool ban or mandatory dependency.
+
+## Surface polish route
+
+When the composition is accepted and the request is to polish or package the screen, follow [surface polish](references/surface-polish.md) instead of reopening the structure. Read the project taste file, or ask at most three multiple-choice direction questions once and start from [taste presets](references/taste-presets.md). Treat all eight surface layers in one pass with concrete values: canvas and light, surface and elevation, type and readability, color, data marks, details, emphasis contrast, and motion. A polish that changes only one or two layers is incomplete. Measure with the [style inventory](scripts/style-inventory.js) before and after, render, and report in plain words for a one-word reaction. When rounds stop producing visible change, show a layer-toggle preview or variants instead of making further small tweaks.
+
+Offer choices and previews rather than asking a non-designer to describe design in words. When the user shows a reference, name the technique that makes it work and apply the principle in the project's own palette; do not copy the reference.
 
 ## 1. Inspect without editing
 
@@ -51,7 +57,7 @@ For each chart or visual, write the analytical question it must answer. When rep
 
 ## 5. Describe the new structure
 
-Before implementation, describe the screen in reading order: what leads, where its evidence sits, what follows, and what becomes progressively disclosed. For a polish request with accepted composition, confirm that structure briefly and concentrate on typography, color roles, contrast, alignment, spacing, and states. For structural redesign, question the existing layout and adjust sections, panels, charts, and density when that clarifies the task. Use [dashboard patterns](references/dashboard-patterns.md) for domain-specific arrangements, without treating them as templates.
+Before implementation, describe the screen in reading order: what leads, where its evidence sits, what follows, and what becomes progressively disclosed. For a polish request with accepted composition, confirm that structure briefly and run the surface polish route. For structural redesign, question the existing layout and adjust sections, panels, charts, and density when that clarifies the task. Use [dashboard patterns](references/dashboard-patterns.md) for domain-specific arrangements, without treating them as templates.
 
 ## 6. Check design intent when visual direction matters
 
@@ -75,4 +81,4 @@ When evaluating a change to this skill itself, use [visual evaluation](reference
 
 ## Avoid
 
-Do not substitute color, spacing, gradients, or shadows for hierarchy. Do not put every item in a card, emphasize everything, retain charts or layout by default, add decoration without informational purpose, or declare success immediately after coding.
+Do not use color, spacing, gradients, or shadows to fix a hierarchy problem; once the hierarchy works, they are a required surface layer, not decoration. Do not put every item in a card, emphasize everything, retain charts or layout by default, add ornaments that attach to no content, stop a polish after one or two property changes, or declare success immediately after coding.
