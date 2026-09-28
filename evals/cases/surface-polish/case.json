@@ -2,7 +2,7 @@
   "id": "review-dashboard-surface-polish",
   "skill": "game-tool-visual-director",
   "evaluation_status": "reference_only",
-  "related_prompt_ids": [21, 22, 23, 24, 25, 26, 27, 28],
+  "related_prompt_ids": [21, 22, 23, 24, 25, 26, 27, 28, 29],
   "request": "구성은 끝났으니 바탕, 색감, 타이포그래피, 그림자, 은은한 빛 같은 표면을 잘 포장한다. 방향: 밝게 · 고급스럽고 차분하게 · 은은하게.",
   "captures": [
     {

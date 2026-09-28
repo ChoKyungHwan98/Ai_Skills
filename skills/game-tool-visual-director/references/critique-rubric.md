@@ -6,10 +6,12 @@ Use this rubric for the initial diagnosis and again on a rendered screenshot aft
 
 Give two separate verdicts from the rendered screen:
 
-- **Communication — PASS / NEEDS REVISION:** Check the first-glance target, reading order, information hierarchy, chart choice, and clarity of the task or decision.
-- **Craft — PASS / NEEDS REVISION:** Check alignment, typography, spacing rhythm, useful density, state clarity, visual coherence, and contextual fit. Use [visual craft](visual-craft.md) when this judgment needs detail.
+- **Communication — PASS / NEEDS REVISION / NOT VERIFIED:** Check the first-glance target, reading order, information hierarchy, chart choice, and clarity of the task or decision.
+- **Craft — PASS / NEEDS REVISION / NOT VERIFIED:** Check alignment, typography, spacing rhythm, useful density, state clarity, visual coherence, and contextual fit. Use [visual craft](visual-craft.md) when this judgment needs detail.
 
 The overall verdict is **PASS** only when both layers pass and no relevant interaction or accessibility regression remains. A well-structured but visibly unfinished screen needs revision; so does a beautiful screen with the wrong hierarchy. Give the observed reason and the next change to test. Do not use a numeric score or claim PASS from source code alone.
+
+Use NOT VERIFIED when the evidence needed for a dimension is unavailable. A source-only review can identify implementation issues but cannot establish rendered craft. Explain findings through visible details and their effects; do not ask the user to supply design terminology or decide whether the professional criteria pass.
 
 ## Review prompts
 
@@ -51,7 +53,7 @@ Useful information density, effective grouping, familiar terminology, clear inte
 1. View the screen at the target viewport without reading every sentence. Write the first thing noticed and what was recognized after 1–3 seconds.
 2. Trace the eye from that first point to the evidence and next action. Note jumps, dead ends, and equal-weight competition.
 3. Check each chart against its stated analytical question. Look for distorted scales, missing units, weak labels, and decorative visuals.
-4. Identify one element to remove or de-emphasize and any existing decision to protect. If nothing can be removed, explain what each prominent element contributes.
+4. Identify competing elements to remove or de-emphasize if they cause an observed problem, and protect useful existing decisions. Do not manufacture a removal merely to complete the review.
 5. Check the target viewport and relevant interaction states, including empty, loading, error, selected, and narrow layouts when those states matter to the task.
 6. Give separate Communication and Craft verdicts, including any visible misalignment, type inconsistency, spacing drift, or unsuitable density.
 

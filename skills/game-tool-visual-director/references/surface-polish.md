@@ -8,7 +8,7 @@ A vague "폴리싱해줘" must not end with one or two property changes. Cover e
 
 Look for the project's taste file (for example `design/taste.md`, or the path the project docs name). If it exists, follow it and do not ask again.
 
-If it does not exist, ask at most three multiple-choice questions in one turn: brightness (bright / dark / both), mood (premium and calm / soft and friendly / game-like immersion / futuristic glass), and effect intensity (subtle / pronounced). Do not ask a non-designer to describe design in words. Start from the matching preset in [taste presets](taste-presets.md), then write the answers and chosen values into the taste file.
+If it does not exist, recommend first: choose the direction that best fits the screen, task, and existing product choices. Then offer it once as at most three multiple-choice questions in one turn, with the recommended option marked: brightness (bright / dark / both), mood (premium and calm / soft and friendly / game-like immersion / futuristic glass), and effect intensity (subtle / pronounced). If the user says to decide (“네가 정해”), skips the questions, or cannot be asked, proceed with the recommendation; the questions never block work. Do not ask a non-designer to describe design in words. Start from the matching preset in [taste presets](taste-presets.md), then write the answers (or "recommended, not chosen") and the values into the taste file.
 
 ## 1. Audit all eight layers
 

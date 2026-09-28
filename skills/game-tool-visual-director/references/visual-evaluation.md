@@ -6,6 +6,8 @@ Use when the user asks to improve the skill or determine whether a new version h
 
 Choose a few representative requests, including a dense chart, accepted composition needing polish, and overlapping marks. Save the old skill snapshot. Give old and candidate versions the same request, input artifacts, project snapshot, data, viewport, and permitted tools. Keep outputs separate; use comparable effort bounds and record important environment differences.
 
+For self-directed design, include a request from a user who has no references or design vocabulary, and one who explicitly asks the agent to decide. Check whether the agent inspects available evidence, chooses a concrete treatment, explains it in ordinary language, and carries authorized work through to output. Record unnecessary aesthetic questions or a plan-only response as failures. Also include a critique-only request and a genuinely missing product fact so initiative does not erase scope or uncertainty.
+
 For a maintained skill, the baseline is its previous version. Use a no-skill baseline only when that answers the user's question. Evaluate the delivered UI and behavior, not whether the response repeats desired wording. For each run, retain the applied version/commit, actual output, captures, relevant interactions, failures, and user feedback.
 
 ## Review with the user or a neutral evaluator
@@ -19,6 +21,7 @@ Ask the reviewer to identify which screen better serves the original request, wh
 | Dimension | Evidence |
 | --- | --- |
 | Scope | Accepted structure and explicit product choices survived |
+| Design ownership | A concrete recommendation and authorized output without requiring the user to supply references or aesthetic decisions |
 | Data integrity | Coordinates, scales, size/color meaning, units, counts, and filters stayed correct |
 | Communication | Reading order and important evidence work in the real screen |
 | Craft | Color roles, type hierarchy, labels, alignment, density, and product character improved |
