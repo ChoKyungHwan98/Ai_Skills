@@ -1,78 +1,63 @@
 ---
 name: game-tool-visual-director
-description: Diagnose and redesign information-heavy game planning tools, analytics dashboards, editors, portfolio tools, and AI-assisted productivity interfaces. Use when feedback is vague (such as “뭔가 이상해”, “직관적이지 않아”, “시각화가 부족해”, “폴리싱해줘”, or “정보만 모아둔 것 같아”) or when a screen needs clearer visual direction, information hierarchy, visualization choices, or visual craft. For critique-only requests, stop before implementation.
+description: Diagnose, redesign, and polish information-heavy game planning tools, analytics dashboards, editors, portfolio tools, and AI-assisted productivity interfaces. Use for unclear hierarchy, weak visual character, or vague UI feedback such as “뭔가 이상해” or “폴리싱해줘”, including when the user cannot explain the design problem or provide references. Infer and recommend a concrete direction from the screen and task. For critique-only requests, stop before implementation.
 metadata:
-  version: "3.2.0"
+  version: "3.3.0"
 ---
 
 # Game Tool Visual Director
 
-Treat each screen as a communication problem before treating it as a styling problem. Translate subjective feedback into observable problems and a testable visual intent. A polished screen should help its viewer recognize the relevant conclusion, state, object, relationship, or action and proceed with the task, not merely display all available information.
+Own the design judgment. The user may know their work but lack design vocabulary, references, or the ability to describe what feels wrong. “Make this better” is enough to begin when the screen and task are available. Discover the problem, choose a defensible visual direction, and turn it into a visible result within the requested scope.
 
-When the hierarchy already works, visual execution can be the main task. Judge the palette, typography, chart treatment, and product character directly; a correct structure alone is not evidence of finished craft.
+Judge communication and craft separately. A correct layout can still look unfinished or generic; a beautiful surface can still obscure the task. Improve the first-glance target, reading order, visual character, and execution as the screen needs them.
 
-## Match the requested scope
+## Match the scope
 
-Distinguish diagnosis, structural redesign, and visual polish. When the user has accepted the composition or chart type, treat it as a protected decision and focus on its execution; briefly flag any demonstrated data or usability defect without reopening the whole design. Infer established goals from the current screen and conversation instead of repeating a design interview. Follow the user's tool choices for the current task. Use complementary skills only when they materially help; do not turn one task's preference into a permanent tool ban or mandatory dependency.
+| Request | Work to do |
+| --- | --- |
+| Diagnose, critique, or direction only | Inspect and explain the significant problems and recommended treatment; stop before editing. |
+| Polish an accepted screen | Protect composition, chart choices, and useful density; improve visual execution and relevant states. |
+| Redesign or an open-ended UI improvement | Diagnose what should change, recommend a direction, implement, and inspect the result. |
 
-## 1. Inspect without editing
+Use the conversation to interpret a vague request. Do not treat an accepted composition as permission to replace it, or reopen a settled design interview. Follow the user's tool choices for this task; use available complementary skills only when they materially help, without a permanent blacklist or mandatory dependency.
 
-Inspect the current screenshot or rendered screen, relevant code and layout, available data and definitions, target viewport, and the user's goal. Read existing design context and preserve visual direction the user has already chosen. Identify the viewer and the decision or task the screen supports. If an input is unavailable, state the assumption or limitation; do not invent data or infer the rendered result from code alone. For critique-only work, complete the applicable design and critique stages without implementation.
+## 1. Inspect and explain what is weak
 
-## 2. Diagnose the communication failure
+Inspect the actual screen at the relevant viewport, then consult source, data definitions, existing tokens, and prior decisions as needed. Identify the viewer's likely task from the product and conversation. Separate visible observations from hypotheses and assumptions; preserve uncertainty when the data does not support a confident conclusion. If no render is available, use accessible preview tools; continue useful source-based work while reporting the visual limit.
 
-Describe what currently draws attention first, what should draw attention first, and what competes with it. Look for unnecessary cards, excess text, weak grouping, unsuitable charts, interaction friction, and styling issues. Translate vague reactions into specific, observable causes and effects. Classify findings under information architecture, visualization, visual hierarchy, interaction, and cosmetic styling. Prioritize structural causes before cosmetic symptoms. Use [visual hierarchy](references/visual-hierarchy.md) and [critique rubric](references/critique-rubric.md) when the diagnosis needs sharper criteria; use [UX heuristics](references/ux-heuristics.md) only when task flow or interaction is at issue.
+Describe what draws attention first, what should lead, and what makes the screen hard to read or visually unconvincing. Prioritize consequential findings rather than reciting a checklist. When hierarchy works, diagnose typography, color relationships, chart treatment, alignment, density, and product character directly instead of inventing a structural failure.
 
-## 3. State Visual Intent before implementation
+Use [visual hierarchy](references/visual-hierarchy.md) and the [critique rubric](references/critique-rubric.md) for diagnosis. Read [UX heuristics](references/ux-heuristics.md) when task flow or interaction is implicated.
 
-Present this compact brief to the user before changing the UI:
+## 2. Choose a direction the user can understand
+
+Read [design intent](references/design-intent.md) for visual direction, especially when the user supplies no references or cannot articulate the problem. Derive the treatment from the task, real screen, and useful existing choices. Recommend one direction with concrete changes and reasons. A reference is optional evidence; obtain it yourself when useful and available, rather than requiring the user to supply one.
+
+Give a brief plain-language intent before editing, scaled to the work:
 
 ```text
-Viewer:
-First-glance target: [the one conclusion, state, object, relationship, or action the viewer should recognize within 1–3 seconds]
-Decision or task this screen supports:
-Attention order:
-1.
-2.
-3.
-4.
-Primary evidence:
-Secondary evidence:
-Remove or de-emphasize:
+The screen should make this clear first: [conclusion, state, object, relationship, or action].
+Keep: [useful existing decisions].
+Change: [the visible treatment and the problem it should resolve].
+Why: [how this helps this viewer's task and gives the screen a coherent character].
 ```
 
-Make the intended message and evidence specific to the screen. Distinguish primary, secondary, and tertiary information. If the evidence does not justify a confident conclusion, make uncertainty part of the message.
+For a redesign, add the proposed reading order and primary evidence. For a small polish, a few sentences are enough. Do not ask the user to write this brief, choose an aesthetic label, supply a mood board, or pick unexplained palettes. Missing aesthetic preferences alone do not block work. Ask only for unresolved product facts or consequential constraints that cannot be inferred; choose reversible visual details yourself.
 
-Continue after stating Visual Intent unless the goal is unclear, an important product decision or destructive change requires user input, or the user explicitly requested review before implementation.
+Continue with authorized implementation after the brief. Pause only for a required unresolved decision or an explicit request to review the direction first. If alternatives materially help, show a small number of concrete treatments and recommend one; do not make a novice's selection a prerequisite for progress.
 
-## 4. Reconsider every representation
+## 3. Implement a coherent treatment
 
-For each chart or visual, write the analytical question it must answer. When representation changes are within scope, keep, replace, simplify, or remove it according to that question and the available data. Respect representations the user explicitly wants to retain. Choose the simplest honest form: ranked or diverging bar, dot plot, scatter plot, quadrant, histogram, line chart, heatmap, table, KPI, annotation, small multiples, text plus number, or no chart. Use [chart selection](references/chart-selection.md) for decision rules and data integrity checks. For positional charts, keep marks at their true coordinates when resolving overlap; move labels, adjust mark treatment, or provide explicit cluster inspection rather than silently moving data marks.
+For accepted analytical screens, use [visualization craft](references/visualization-craft.md) for color roles, type roles, chart layers, labels, and selected states. Use [visual craft](references/visual-craft.md) to judge the whole screen, not just token consistency. Commit to a treatment that fits the product; more whitespace, gradients, rounded cards, or a fashionable palette do not establish quality by themselves.
 
-## 5. Describe the new structure
+When structural changes are in scope, name the question each representation answers and use [chart selection](references/chart-selection.md) to keep, replace, simplify, or remove it. Use [dashboard patterns](references/dashboard-patterns.md) for useful domain arrangements rather than fixed templates. Explain the new screen in reading order before implementing it.
 
-Before implementation, describe the screen in reading order: what leads, where its evidence sits, what follows, and what becomes progressively disclosed. For a polish request with accepted composition, confirm that structure briefly and concentrate on typography, color roles, contrast, alignment, spacing, and states. For structural redesign, question the existing layout and adjust sections, panels, charts, and density when that clarifies the task. Use [dashboard patterns](references/dashboard-patterns.md) for domain-specific arrangements, without treating them as templates.
+Preserve correct data, definitions, and important behavior. Keep positional marks at their real coordinates when resolving overlap; move labels or provide explicit cluster inspection. Preserve size and color meanings. Use [accessibility and quality checks](references/accessibility-checks.md) for affected concerns, and inspect live states when controls or behavior change. A critique-only request does not authorize edits.
 
-## 6. Check design intent when visual direction matters
+## 4. Inspect, revise, and deliver
 
-After the information structure and Visual Intent are clear, use [design intent](references/design-intent.md) if the request concerns visual character or an existing direction needs interpretation. Ground it in the project's current choices and the user's specific references; do not turn vague adjectives into automatic style prescriptions.
+Inspect an actual rendered result at the target viewport after implementation. Compare before/after with matched data and state when a prior capture exists. Judge Communication and Craft using the [critique rubric](references/critique-rubric.md), then revise and render again for consequential failures. Check affected interactions live; a still image cannot prove selection reachability, keyboard behavior, or motion quality.
 
-For analytical screens, use [visualization craft](references/visualization-craft.md) to translate that direction into color roles, type roles, chart layers, labels, and selection states. Preserve the existing product palette when it works; external palettes are candidates to compare, not automatic replacements.
+Explain the result through visible changes and their effects in ordinary language. Show the actual screen or before/after when available; the user should not need design vocabulary to assess it. Distinguish what was observed, what was checked, and what remains unverified. With no usable render, mark the relevant visual verdict NOT VERIFIED and give the next concrete verification step instead of declaring success from source code.
 
-## 7. Implement when requested
-
-Only after diagnosis, Visual Intent, visualization choice, layout structure, and any relevant design intent are explicit, modify the application. Preserve correct data, definitions, important behavior, and useful existing design decisions. Check chart semantics, labels, units, and interaction states. Use [accessibility and quality checks](references/accessibility-checks.md) when changes affect those concerns. A request for critique or direction alone does not authorize code changes.
-
-## 8. Check UX quality and visual craft
-
-When task flow or controls changed, inspect relevant interaction states with [UX heuristics](references/ux-heuristics.md) and [accessibility and quality checks](references/accessibility-checks.md). After communication and structure are established, use [visual craft](references/visual-craft.md) to judge execution and contextual fit. Do not infer live behavior from a still screenshot.
-
-## 9. Critique the rendered result and revise
-
-Inspect an actual rendered screenshot at the target viewport for a screen critique and after implementation. Use [critique rubric](references/critique-rubric.md) for separate Communication and Craft verdicts; both must pass. When implementation produces an after screen and a previous screen exists, compare them at the same viewport and data/state. If implementation was requested, revise and render again when either layer misses its intent; for critique-only requests, report the findings. If rendering is unavailable, report visual verification as incomplete rather than declaring success from source code.
-
-When evaluating a change to this skill itself, use [visual evaluation](references/visual-evaluation.md) to compare actual outputs from old and candidate versions. See [upstream sources](references/upstream-sources.md) for the selected external practices and adaptation boundaries.
-
-## Avoid
-
-Do not substitute color, spacing, gradients, or shadows for hierarchy. Do not put every item in a card, emphasize everything, retain charts or layout by default, add decoration without informational purpose, or declare success immediately after coding.
+When improving this skill itself, use [visual evaluation](references/visual-evaluation.md) to compare real old/candidate outputs. [Upstream sources](references/upstream-sources.md) records selected external practices and their adaptation boundaries.

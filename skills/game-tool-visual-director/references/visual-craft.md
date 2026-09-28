@@ -21,6 +21,8 @@ For analytical charts and dashboards, use [visualization craft](visualization-cr
 
 Ask whether the execution has a reason beyond a generic component default. Does it fit the product, viewer, and stakes? Does its visual character support the intended task? Are dense areas earned by comparison or expert speed? Does the screen commit to a recognizable direction without adding decoration merely to look distinctive? A restrained interface can be deliberate; an expressive or dense professional tool can be excellent. Do not treat minimalism, extra whitespace, or rounded corners as automatic improvements.
 
+Make that judgment yourself when the user lacks design vocabulary. Correct data, readable labels, and consistent tokens are necessary but do not alone establish finished visual quality. Examine the relationships across type, surfaces, marks, rhythm, and details as a whole; choose a treatment with a reason specific to this product. Explain visible weaknesses and revise them instead of returning an abstract checklist or waiting for the user to name an aesthetic.
+
 For a significant issue, name the visible inconsistency, its effect on reading or use, and the change that should resolve it. When an existing visual decision works, record:
 
 ```text

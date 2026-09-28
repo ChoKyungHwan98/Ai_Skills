@@ -1,5 +1,16 @@
 # Changes
 
+## 3.3.0 — candidate — 2026-09-28
+
+- Make design judgment the agent's responsibility when the user lacks references, design vocabulary, or a precise problem description.
+- Replace the fixed nine-stage workflow with scope-aware inspection, a concrete recommendation, implementation, and rendered review.
+- Expand design-intent guidance for deriving visual treatments from the product, explaining choices in ordinary language, and researching references only when useful.
+- Add six regression scenarios for vague requests, delegated aesthetic choices, missing product facts, critique boundaries, and unavailable renders.
+- Align missing-evidence verdicts with NOT VERIFIED and remove the requirement to find something to remove in every review.
+- Correct trial-install instructions for the still-unmerged candidate branch.
+
+The accompanying screenshot exercise records a recommendation from a historical render, not a candidate implementation or independent old/candidate comparison. Visual improvement remains unverified; retain candidate status.
+
 ## 3.2.0 — candidate — 2026-09-28
 
 - Selectively synthesize GitHub practices for semantic colors, typography candidates, component feedback, and old/candidate output evaluation, with pinned source revisions and adaptation boundaries.
