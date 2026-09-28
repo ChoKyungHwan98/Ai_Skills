@@ -2,6 +2,8 @@
 
 Use after information architecture and Visual Intent are established. Judge the rendered screen first; inspect implementation values when a craft diagnosis needs precision. A coherent structure can still feel unfinished, and a polished surface can still communicate the wrong thing. Record these failures separately.
 
+For analytical charts and dashboards, use [visualization craft](visualization-craft.md) for concrete palette, type, layering, overlap, and state choices. If the composition is already accepted, craft is the primary improvement task; do not reset the information structure merely to demonstrate a redesign.
+
 ## Craft: is the execution controlled?
 
 | Dimension | Inspect in the rendered result |

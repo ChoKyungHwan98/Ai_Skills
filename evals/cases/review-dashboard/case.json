@@ -27,7 +27,7 @@
   "comparison_limits": [
     "The browser captures have matching image dimensions and visible game/counts/selection, but no machine-readable data fingerprint was recorded at capture time.",
     "The native desktop reference is not a matched-viewport before/after pair with the browser captures.",
-    "These are historical regression inputs, not results of a new run of candidate 3.1.0 and not evidence of an independently certified visual PASS.",
+    "These are historical regression inputs, not results of a new run of the current candidate and not evidence of an independently certified visual PASS.",
     "A still screenshot cannot prove hover, keyboard access, topic selection, or correct hidden coordinate values."
   ],
   "observed_findings": [

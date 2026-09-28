@@ -1,5 +1,14 @@
 # Changes
 
+## 3.2.0 — candidate — 2026-09-28
+
+- Selectively synthesize GitHub practices for semantic colors, typography candidates, component feedback, and old/candidate output evaluation, with pinned source revisions and adaptation boundaries.
+- Add analytical-screen craft guidance for Hangul labels, chart layers, selection semantics, and honest overlap treatment without changing accepted composition.
+- Add an opaque sRGB contrast helper with explicit scope and unrounded threshold checks.
+- Add regression scenarios for imported palettes, selection colors, type coverage, bubble encoding, and fair candidate comparisons.
+
+Source and package checks do not establish that the candidate produces better UI. Historical renders remain reference inputs; an independent old/candidate behavioral comparison is still pending.
+
 ## 3.1.0 — candidate — 2026-09-28
 
 - Protect an accepted composition during visual polish; avoid repeating an already answered design interview.

@@ -31,6 +31,8 @@ python scripts/manage_skills.py status
 python scripts/manage_skills.py sync --ref origin/main --fetch
 ```
 
-현재 `3.1.0`은 candidate입니다. 이를 시험하려면 `--allow-candidate`를 명시합니다. 기존 비관리 설치본을 처음 전환할 때는 `--adopt`를 사용하며, 원본 설치본 전체를 백업합니다. 관리된 설치본의 직접 수정은 덮어쓰지 않습니다.
+현재 `3.2.0`은 candidate입니다. 이를 시험하려면 `--allow-candidate`를 명시합니다. 기존 비관리 설치본을 처음 전환할 때는 `--adopt`를 사용하며, 원본 설치본 전체를 백업합니다. 관리된 설치본의 직접 수정은 덮어쓰지 않습니다.
+
+시각화 지침에는 [색상·타이포·차트 표현](skills/game-tool-visual-director/references/visualization-craft.md), [이전/후보 버전 결과 평가](skills/game-tool-visual-director/references/visual-evaluation.md), [선별한 GitHub 출처와 적용 범위](skills/game-tool-visual-director/references/upstream-sources.md)가 포함됩니다.
 
 검증 종류: CI는 패키지와 업데이트/복구 동작만 검사합니다. 디자인 품질은 [실제 화면 사례](evals/cases/review-dashboard/case.json)와 Communication/Craft 리뷰로 확인합니다.

@@ -2,12 +2,14 @@
 name: game-tool-visual-director
 description: Diagnose and redesign information-heavy game planning tools, analytics dashboards, editors, portfolio tools, and AI-assisted productivity interfaces. Use when feedback is vague (such as “뭔가 이상해”, “직관적이지 않아”, “시각화가 부족해”, “폴리싱해줘”, or “정보만 모아둔 것 같아”) or when a screen needs clearer visual direction, information hierarchy, visualization choices, or visual craft. For critique-only requests, stop before implementation.
 metadata:
-  version: "3.1.0"
+  version: "3.2.0"
 ---
 
 # Game Tool Visual Director
 
 Treat each screen as a communication problem before treating it as a styling problem. Translate subjective feedback into observable problems and a testable visual intent. A polished screen should help its viewer recognize the relevant conclusion, state, object, relationship, or action and proceed with the task, not merely display all available information.
+
+When the hierarchy already works, visual execution can be the main task. Judge the palette, typography, chart treatment, and product character directly; a correct structure alone is not evidence of finished craft.
 
 ## Match the requested scope
 
@@ -55,6 +57,8 @@ Before implementation, describe the screen in reading order: what leads, where i
 
 After the information structure and Visual Intent are clear, use [design intent](references/design-intent.md) if the request concerns visual character or an existing direction needs interpretation. Ground it in the project's current choices and the user's specific references; do not turn vague adjectives into automatic style prescriptions.
 
+For analytical screens, use [visualization craft](references/visualization-craft.md) to translate that direction into color roles, type roles, chart layers, labels, and selection states. Preserve the existing product palette when it works; external palettes are candidates to compare, not automatic replacements.
+
 ## 7. Implement when requested
 
 Only after diagnosis, Visual Intent, visualization choice, layout structure, and any relevant design intent are explicit, modify the application. Preserve correct data, definitions, important behavior, and useful existing design decisions. Check chart semantics, labels, units, and interaction states. Use [accessibility and quality checks](references/accessibility-checks.md) when changes affect those concerns. A request for critique or direction alone does not authorize code changes.
@@ -66,6 +70,8 @@ When task flow or controls changed, inspect relevant interaction states with [UX
 ## 9. Critique the rendered result and revise
 
 Inspect an actual rendered screenshot at the target viewport for a screen critique and after implementation. Use [critique rubric](references/critique-rubric.md) for separate Communication and Craft verdicts; both must pass. When implementation produces an after screen and a previous screen exists, compare them at the same viewport and data/state. If implementation was requested, revise and render again when either layer misses its intent; for critique-only requests, report the findings. If rendering is unavailable, report visual verification as incomplete rather than declaring success from source code.
+
+When evaluating a change to this skill itself, use [visual evaluation](references/visual-evaluation.md) to compare actual outputs from old and candidate versions. See [upstream sources](references/upstream-sources.md) for the selected external practices and adaptation boundaries.
 
 ## Avoid
 
