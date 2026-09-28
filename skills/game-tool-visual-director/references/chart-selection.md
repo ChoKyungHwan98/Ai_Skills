@@ -15,7 +15,7 @@ State the viewer's question in one sentence. Identify the task: compare, rank, s
 | Are two measures related? | Scatter plot | Sufficient points, useful axes, overplotting, correlation claims |
 | How do parts contribute to a whole? | Sorted bars, stacked bars, or a simple part-to-whole display | Whether shares sum to the same whole and precise comparison is needed |
 | Which combinations are high or low? | Heatmap or matrix | Comparable scale, legible cells, accessible legend |
-| Which items meet two thresholds? | Quadrant only when thresholds have real meaning | Arbitrary lines and misleading quadrant names |
+| Which items meet two thresholds? | Quadrant only when thresholds have real meaning; for mention volume × dissatisfaction or satisfaction, an IPA (importance–performance) matrix with its standard zones (concentrate here / keep up / low priority / possible overkill, in Korean 중점투자 / 유지강화 / 점진적 개선 / 현상유지) and a topic count per zone | Arbitrary lines and misleading quadrant names |
 | What exact values or many attributes matter? | Table with sorting, highlighting, or in-cell bars | Scanability, units, sticky labels, overflow |
 | What is the current state or single recommendation? | KPI, text plus number, annotation, or no chart | Missing comparison, context, or uncertainty |
 | How do small groups differ on the same measure? | Small multiples | Shared scales and consistent ordering |

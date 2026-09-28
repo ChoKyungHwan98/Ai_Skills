@@ -25,7 +25,7 @@ Measure the rendered screen with [style inventory](../scripts/style-inventory.js
 | 7. Emphasis contrast (강약 조절) | What is loudest | One strongest element per region; only the key bar at full strength, others one lighter step; value labels colored only for the emphasized item | Every element equally loud after polish |
 | 8. Motion and response (움직임과 반응) | Entrance, hover, feedback | Bars grow on entrance (≤ 600ms, ≈60ms stagger); hovering a mark dims context marks to ≈40% but never the highlighted or selected marks and their labels; tooltip ≈160ms; hit target larger than the mark; controls lift 1px on hover; `prefers-reduced-motion` removes motion | Dimming everything, including what the viewer is reading |
 
-Keep structure, data values, coordinates, encodings, and copy unchanged unless the user asks. The values above are defaults for a bright analytical screen; the taste file overrides them.
+Keep structure, data values, coordinates, encodings, and copy unchanged unless the user asks. The values above are defaults for a bright analytical screen; the taste file overrides them, and the project's own design rules and detectors override both. Read the project's agent instructions and design docs first. If they ban a treatment, such as colored glow shadows, thin border plus wide shadow, or gradients outside data marks, use the nearest allowed form: neutral shadows, borderless cards, or tonal data marks only. Translucent chrome with backdrop blur can defeat pixel-based contrast checks, so keep navigation chrome opaque when the project runs one. When an approved direction conflicts with a documented project rule, apply it only if the user chose it, update the rule's document in the same change, and tell the user what changed.
 
 ## 2. Write the treatment as layer instructions
 
@@ -33,7 +33,7 @@ State each layer as one instruction with concrete values, such as: "Data marks: 
 
 ## 3. Implement, measure, render
 
-Apply all layers in one pass. Run the style inventory before and after at the same viewport, data, and selection. Targets: minimum text size and size count from the taste file, one dark filled control per view, no low-contrast flags (resolve "unresolved" pairs by hand), no Hangul mid-word breaks, and gradient rather than flat data fills when the data-mark layer applies. Capture before and after screenshots, and check hover and entrance states live. The inventory counts; the rendered screen decides.
+Apply all layers in one pass. Run the project's own checks (for example `npx impeccable detect`) on files and on the rendered page, and compare against the unchanged base so pre-existing findings are not mistaken for new ones. Run the style inventory before and after at the same viewport, data, and selection. Targets: minimum text size and size count from the taste file, one dark filled control per view, no low-contrast flags (resolve "unresolved" pairs by hand), no Hangul mid-word breaks, and gradient rather than flat data fills when the data-mark layer applies. Capture before and after screenshots, and check hover and entrance states live. The inventory counts; the rendered screen decides.
 
 ## 4. Report for a quick reaction
 

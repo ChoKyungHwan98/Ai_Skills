@@ -289,6 +289,17 @@
         "Redesign markers with a clear hierarchy, such as zone-tinted hollow rings for context and solid highlighted points with a white ring, without glossy or skeuomorphic effects.",
         "Re-render and check label collisions after the scale change."
       ]
+    },
+    {
+      "id": 29,
+      "name": "project-rules-outrank-preset",
+      "prompt": "The user approved a layer preview with borderless floating cards, a colored glow under the key bar, and a translucent blurred sidebar, and asks to apply it to their app. The app's AGENTS.md bans colored glows and thin borders with wide shadows, requires `npx impeccable detect` to report 0 findings, and its design doc says panes are divided by 1px lines to match a host studio.",
+      "expected_behavior": [
+        "Read the project's instructions and design doc before implementing the preset.",
+        "Replace banned treatments with the nearest allowed form (neutral shadows, no colored glow, opaque chrome) and rerun the detector until the files report 0.",
+        "Compare rendered-page findings against the unchanged base, and fix only the new ones.",
+        "Apply the user-approved change to the documented pane rule only together with an update to that document, and tell the user which rule changed."
+      ]
     }
   ]
 }

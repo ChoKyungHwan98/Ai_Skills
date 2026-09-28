@@ -8,7 +8,8 @@
 - Reframe the gradient and shadow caution: they never fix hierarchy, but they are a required surface layer once hierarchy works.
 - Add `scripts/style-inventory.js`, a browser-evaluated count of text sizes, colors, contrast flags, Hangul mid-word breaks, borders, shadows, dark filled controls, and chart-mark fills.
 - Spread crowded scatter marks with a labeled log scale for skewed count axes, and use zone-tinted hollow rings for context points with solid highlighted points.
-- Add regression scenarios 21–28 and the surface-polish reference case with before and after renders and user feedback.
+- Let project rules and detectors override presets: neutral shadows where colored glows are flagged, opaque chrome where contrast is measured by pixels, and a documented rule change when an approved direction conflicts. Name volume × dissatisfaction quadrants as an IPA matrix with its standard zones.
+- Add regression scenarios 21–29 and the surface-polish reference case with before and after renders and user feedback.
 
 Evidence comes from a mockup the user reviewed, not from a candidate run against the real application. An old/candidate comparison is still pending.
 
