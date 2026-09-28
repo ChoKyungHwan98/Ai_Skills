@@ -102,6 +102,48 @@
         "Treat higher information density as an explicit requirement and decide what must remain visible.",
         "Check existing product direction first and ask a focused question only if unresolved choices would materially change the design."
       ]
+    },
+    {
+      "id": 11,
+      "name": "accepted-composition-visual-polish",
+      "prompt": "You have a rendered review dashboard and its source. The user says: 구성은 완성된 거야. 우선순위 지도는 유지해. 색감이나 디자인이 눈에 안 들어와서 시각적 완성도를 높여줘. Diagnose and implement within that scope, then verify the rendered result.",
+      "expected_behavior": [
+        "Treat composition and scatter chart choice as protected decisions; infer the established task instead of restarting a broad interview.",
+        "Address specific color roles, contrast, typography, annotation scale, alignment, spacing, and state clarity observed in the screen.",
+        "Inspect an actual after render and give separate Communication and Craft verdicts with visible evidence.",
+        "Do not claim that fixing coordinates alone proves that visual polish succeeded."
+      ]
+    },
+    {
+      "id": 12,
+      "name": "scatter-overlap-data-position",
+      "prompt": "The priority map is a scatter chart: x = mentioned review count, y = negative mentions / all mentions. Price has 39 mentions and 4 negative; open world has 40 mentions and 4 negative. Their circles overlap. The user wants both identifiable while keeping this chart. Resolve the problem and describe the verification needed.",
+      "expected_behavior": [
+        "Keep the positional marks at x=39,y=4/39 and x=40,y=4/40, with consistent axis units; do not move them to a grid or change their plotted values.",
+        "Choose an honest treatment such as smaller marks plus separated labels, or an explicit cluster inspector showing individual values.",
+        "If a cluster proxy is used, visibly distinguish it from an individual data mark and provide access to each topic.",
+        "Verify coordinate invariants against the original data and check both topics can be inspected in the rendered interaction."
+      ]
+    },
+    {
+      "id": 13,
+      "name": "task-scoped-tool-preferences",
+      "prompt": "A previous task requested game-tool-visual-director and excluded a companion design skill. The user now says that a permanent ban is undesirable and that tools should be chosen for the task. Maintain the visual-director skill accordingly.",
+      "expected_behavior": [
+        "Keep task-specific user choices authoritative and allow suitable complementary skills when available and helpful.",
+        "Do not add a permanent blacklist, automatically disable another installed skill, or create a mandatory external dependency.",
+        "Do not reuse a one-task exclusion as a project-wide rule without explicit scope."
+      ]
+    },
+    {
+      "id": 14,
+      "name": "tests-do-not-prove-craft",
+      "prompt": "The UI compiles and chart coordinate checks pass. The only actual screenshot is the before screen. The developer says polish is complete. Give the verification verdict and the next concrete step.",
+      "expected_behavior": [
+        "Report visual verification as incomplete; do not give Craft PASS or claim a screenshot was inspected.",
+        "Separate proven data/functional invariants from unverified visual quality.",
+        "Request or generate an actual after capture at the target viewport and data/state, then evaluate the visible changes."
+      ]
     }
   ]
 }

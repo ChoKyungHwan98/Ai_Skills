@@ -1,11 +1,17 @@
 ---
 name: game-tool-visual-director
 description: Diagnose and redesign information-heavy game planning tools, analytics dashboards, editors, portfolio tools, and AI-assisted productivity interfaces. Use when feedback is vague (such as “뭔가 이상해”, “직관적이지 않아”, “시각화가 부족해”, “폴리싱해줘”, or “정보만 모아둔 것 같아”) or when a screen needs clearer visual direction, information hierarchy, visualization choices, or visual craft. For critique-only requests, stop before implementation.
+metadata:
+  version: "3.1.0"
 ---
 
 # Game Tool Visual Director
 
 Treat each screen as a communication problem before treating it as a styling problem. Translate subjective feedback into observable problems and a testable visual intent. A polished screen should help its viewer recognize the relevant conclusion, state, object, relationship, or action and proceed with the task, not merely display all available information.
+
+## Match the requested scope
+
+Distinguish diagnosis, structural redesign, and visual polish. When the user has accepted the composition or chart type, treat it as a protected decision and focus on its execution; briefly flag any demonstrated data or usability defect without reopening the whole design. Infer established goals from the current screen and conversation instead of repeating a design interview. Follow the user's tool choices for the current task. Use complementary skills only when they materially help; do not turn one task's preference into a permanent tool ban or mandatory dependency.
 
 ## 1. Inspect without editing
 
@@ -39,11 +45,11 @@ Continue after stating Visual Intent unless the goal is unclear, an important pr
 
 ## 4. Reconsider every representation
 
-For each chart or visual, write the analytical question it must answer. Keep, replace, simplify, or remove it according to that question and the available data. Do not preserve a scatter plot, donut, KPI card, or any other component just because it exists. Choose the simplest honest form: ranked or diverging bar, dot plot, scatter plot, quadrant, histogram, line chart, heatmap, table, KPI, annotation, small multiples, text plus number, or no chart. Use [chart selection](references/chart-selection.md) for decision rules and data integrity checks.
+For each chart or visual, write the analytical question it must answer. When representation changes are within scope, keep, replace, simplify, or remove it according to that question and the available data. Respect representations the user explicitly wants to retain. Choose the simplest honest form: ranked or diverging bar, dot plot, scatter plot, quadrant, histogram, line chart, heatmap, table, KPI, annotation, small multiples, text plus number, or no chart. Use [chart selection](references/chart-selection.md) for decision rules and data integrity checks. For positional charts, keep marks at their true coordinates when resolving overlap; move labels, adjust mark treatment, or provide explicit cluster inspection rather than silently moving data marks.
 
 ## 5. Describe the new structure
 
-Before implementation, describe the proposed screen in reading order: what leads, where its evidence sits, what follows, and what becomes progressively disclosed. Question the existing layout. Reorder sections, resize panels, merge or remove cards, replace charts, adjust density, and move supporting details below when these changes clarify the decision. Use [dashboard patterns](references/dashboard-patterns.md) for domain-specific arrangements, without treating them as templates.
+Before implementation, describe the screen in reading order: what leads, where its evidence sits, what follows, and what becomes progressively disclosed. For a polish request with accepted composition, confirm that structure briefly and concentrate on typography, color roles, contrast, alignment, spacing, and states. For structural redesign, question the existing layout and adjust sections, panels, charts, and density when that clarifies the task. Use [dashboard patterns](references/dashboard-patterns.md) for domain-specific arrangements, without treating them as templates.
 
 ## 6. Check design intent when visual direction matters
 

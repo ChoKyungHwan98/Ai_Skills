@@ -9,3 +9,28 @@
 - “이 화면 뭔가 이상해. game-tool-visual-director 기준으로 진단해줘.”
 - “현재 UI를 game-tool-visual-director로 분석하고 Visual Intent까지만 작성해. 구현하지 마.”
 - “이 dashboard를 분석하고 재설계한 뒤 screenshot critique loop까지 수행해.”
+
+## Codex에서 사용하기
+
+GitHub 원본 → 검증한 커밋 → Codex 설치본 순서로 관리합니다. 전체 운영 절차는 [유지보수 안내](docs/maintenance.md)에 있습니다.
+
+```text
+game-tool-visual-director를 사용해줘.
+현재 구성은 유지하고 시각적 완성도를 개선해.
+실제 화면을 확인하고 구현 후 rendered screenshot으로 검증해.
+```
+
+사용할 도구나 보존할 구성은 작업마다 지정할 수 있습니다. 특정 디자인 스킬을 일괄 금지하거나 필수로 요구하지 않습니다.
+
+```powershell
+# 원본 저장소의 체크아웃에서 실행 (Python 3.10+, Git)
+python scripts/check_skills.py
+python scripts/manage_skills.py status
+
+# GitHub main을 가져오고 안정 버전을 설치/업데이트
+python scripts/manage_skills.py sync --ref origin/main --fetch
+```
+
+현재 `3.1.0`은 candidate입니다. 이를 시험하려면 `--allow-candidate`를 명시합니다. 기존 비관리 설치본을 처음 전환할 때는 `--adopt`를 사용하며, 원본 설치본 전체를 백업합니다. 관리된 설치본의 직접 수정은 덮어쓰지 않습니다.
+
+검증 종류: CI는 패키지와 업데이트/복구 동작만 검사합니다. 디자인 품질은 [실제 화면 사례](evals/cases/review-dashboard/case.json)와 Communication/Craft 리뷰로 확인합니다.
