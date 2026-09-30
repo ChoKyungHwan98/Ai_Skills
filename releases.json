@@ -4,7 +4,7 @@
   "skills": {
     "game-tool-visual-director": {
       "path": "skills/game-tool-visual-director",
-      "version": "4.1.0",
+      "version": "4.1.1",
       "channel": "candidate"
     }
   }

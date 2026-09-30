@@ -29,7 +29,7 @@ Choose a coherent direction across the parts that need change. Use the following
 
 Name actual treatments: a stronger selected-topic label, aligned numeric rows, quieter quadrant fills, or consistent annotation boundaries. When source is available, choose concrete font, color, spacing, and component values before implementation and test them in the real render. A list of token names or adjectives is not a finished direction.
 
-Prefer a recommendation over an unranked menu. For surface polish without a taste file, [surface polish](surface-polish.md) offers the recommendation once as a few marked multiple-choice options; the user may pick, adjust, or say “네가 정해”, and work continues either way. If the user asks you to decide, decide within scope and explain briefly. For reversible choices, implement the recommended treatment and let the visible result support feedback. Offer concrete alternatives only when they illuminate a meaningful tradeoff or the user asks for them.
+Prefer a recommendation over an unranked menu. For surface polish, [surface polish](surface-polish.md) derives that recommendation from the screen and project rules even when no taste file exists. If the user asks you to decide, decide within scope and explain briefly. For reversible choices, implement the recommended treatment and let the visible result support feedback. Offer concrete alternatives only when they illuminate a meaningful tradeoff or the user asks for them.
 
 ### Example without a user reference
 

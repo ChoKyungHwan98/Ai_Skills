@@ -23,9 +23,9 @@ game-tool-visual-director로 이 화면 포장해줘. 구성과 데이터는 그
 
 스킬은 이렇게 진행합니다.
 
-1. 프로젝트에 taste 파일이 없으면 객관식 질문 3개(밝기, 분위기, 강도)를 한 번만 묻고 기록합니다.
-2. 여덟 층을 전부 다룹니다: 바탕과 빛, 표면과 그림자, 글꼴과 가독성, 색감, 데이터 마크, 디테일, 강약 조절, 움직임과 반응.
-3. 측정 스크립트로 전후를 재고 렌더링해서 보여줍니다.
+1. 현재 화면과 프로젝트 디자인 규칙을 읽고 한 방향을 추천합니다. 사용자가 디자인 판단을 맡겼다면 취향 설문으로 멈추지 않습니다.
+2. 바탕·표면·글꼴·색감·데이터 마크·디테일·강약·반응을 함께 점검하고, 실제 문제를 해결하는 부분만 바꿉니다.
+3. 프로젝트에 필요한 검사와 실제 화면 비교를 거쳐 보여줍니다. taste 파일과 측정 스크립트는 도움이 될 때만 사용합니다.
 4. 반응은 한 마디면 됩니다: **좋다 / 과하다 / 약하다**, 또는 "여기 별로".
 
 막혔을 때 쓰는 말:
@@ -56,7 +56,7 @@ python scripts/manage_skills.py status
 python scripts/manage_skills.py sync --ref origin/main --fetch --allow-candidate
 ```
 
-현재 main의 `4.1.0`은 candidate입니다. 시험하려면 `--allow-candidate`를 명시합니다. 기존 비관리 설치본을 처음 전환할 때만 `--adopt`를 추가하며, 원본 설치본 전체를 백업합니다. 관리된 설치본의 직접 수정은 덮어쓰지 않습니다. 안정 버전으로 승격한 뒤에는 `sync --ref origin/main --fetch`만으로 갱신할 수 있습니다.
+현재 main의 `4.1.0`은 candidate입니다. `4.1.1` 수정안도 병합 전 candidate로 검토 중입니다. main의 후보를 시험하려면 `--allow-candidate`를 명시합니다. 기존 비관리 설치본을 처음 전환할 때만 `--adopt`를 추가하며, 원본 설치본 전체를 백업합니다. 관리된 설치본의 직접 수정은 덮어쓰지 않습니다. 안정 버전으로 승격한 뒤에는 `sync --ref origin/main --fetch`만으로 갱신할 수 있습니다.
 
 시각화 지침에는 [표면 폴리싱 여덟 층](skills/game-tool-visual-director/references/surface-polish.md), [taste 파일과 프리셋](skills/game-tool-visual-director/references/taste-presets.md), [색상·타이포·차트 표현](skills/game-tool-visual-director/references/visualization-craft.md), [이전/후보 버전 결과 평가](skills/game-tool-visual-director/references/visual-evaluation.md), [선별한 GitHub 출처와 적용 범위](skills/game-tool-visual-director/references/upstream-sources.md)가 포함됩니다.
 
