@@ -1,8 +1,8 @@
 ---
 name: game-tool-visual-director
-description: Diagnose, redesign, and polish information-heavy game planning tools, analytics dashboards, editors, portfolio tools, and AI-assisted productivity interfaces. Use for unclear hierarchy, weak visual character, or vague UI feedback such as “뭔가 이상해”, “폴리싱해줘”, “포장해줘”, “밋밋해”, or “색이 올드해”, including when the user cannot explain the design problem or provide references. Infer and recommend a concrete direction from the screen and task, and polish the surface (color, typography, shadows, light, chart styling) across every layer. For critique-only requests, stop before implementation.
+description: Diagnose, redesign, and polish information-heavy game planning tools, analytics dashboards, editors, portfolio tools, and AI-assisted productivity interfaces. Use for unclear hierarchy, weak visual character, or vague UI feedback such as “뭔가 이상해”, “폴리싱해줘”, “포장해줘”, “밋밋해”, or “색이 올드해”, including when the user cannot explain the design problem or provide references. Infer and recommend a concrete direction from the screen and task; improve the surface where the real screen needs it. For critique-only requests, stop before implementation.
 metadata:
-  version: "4.1.0"
+  version: "4.1.1"
 ---
 
 # Game Tool Visual Director
@@ -16,16 +16,16 @@ Judge communication and craft separately. A correct layout can still look unfini
 | Request | Work to do |
 | --- | --- |
 | Diagnose, critique, or direction only | Inspect and explain the significant problems and recommended treatment; stop before editing. |
-| Polish an accepted screen | Protect composition, chart choices, and useful density; run the surface polish route below across all eight layers. |
+| Polish an accepted screen | Protect composition, chart definitions, and useful density; inspect the surface layers and change those with an observed weakness. |
 | Redesign or an open-ended UI improvement | Diagnose what should change, recommend a direction, implement, and inspect the result. |
 
 Use the conversation to interpret a vague request. Do not treat an accepted composition as permission to replace it, or reopen a settled design interview. Follow the user's tool choices for this task; use available complementary skills only when they materially help, without a permanent blacklist or mandatory dependency.
 
 ## Surface polish route
 
-When the composition is accepted and the request is to polish or package the screen, follow [surface polish](references/surface-polish.md) instead of reopening the structure. Treat all eight surface layers in one pass with concrete values: canvas and light, surface and elevation, type and readability, color, data marks, details, emphasis contrast, and motion. A polish that changes only one or two layers is incomplete. Read the project taste file and the project's own design rules first; project rules and detectors outrank presets. Measure with the [style inventory](scripts/style-inventory.js) before and after, render, and report in plain words for a one-word reaction (좋다 / 과하다 / 약하다). When rounds stop producing visible change, show a layer-toggle preview or variants instead of making further small tweaks.
+When the composition is accepted and the request is to polish or package the screen, follow [surface polish](references/surface-polish.md) instead of reopening the structure. Inspect canvas, surfaces, type, color, data marks, details, emphasis, and response as a whole; change the layers that actually weaken the screen and leave working layers intact. Read project design rules and any existing taste record before choosing treatments. Use the [style inventory](scripts/style-inventory.js) when it helps measure the real page, then inspect the rendered result. A small number of coordinated changes can be enough when the evidence supports them.
 
-Settle the direction by recommending first. If the project has no taste file, pick a recommended direction from the screen and task, then offer it once as at most three multiple-choice questions (brightness, mood, intensity) with the recommendation marked, starting from [taste presets](references/taste-presets.md). If the user says to decide (“네가 정해”), skips the questions, or is not available, proceed with the recommendation. Never block on taste, and do not ask again once the choice is recorded in the taste file.
+Recommend a direction from the screen, task, and project rules, and proceed when the user has delegated aesthetic judgment. Do not make the absence of a taste file trigger questions or create one merely to complete a polish request. Ask a focused question only when a consequential product choice remains unresolved; if a visual comparison would help, recommend a concrete option. Treat [taste presets](references/taste-presets.md) as optional examples, not defaults.
 
 ## 1. Inspect and explain what is weak
 
@@ -50,13 +50,13 @@ Why: [how this helps this viewer's task and gives the screen a coherent characte
 
 For a redesign, add the proposed reading order and primary evidence. For a small polish, a few sentences are enough. Do not ask the user to write this brief, choose an aesthetic label, supply a mood board, or pick unexplained palettes. Missing aesthetic preferences alone do not block work. Ask only for unresolved product facts or consequential constraints that cannot be inferred; choose reversible visual details yourself.
 
-Continue with authorized implementation after the brief. Pause only for a required unresolved decision or an explicit request to review the direction first. If alternatives materially help, show a small number of concrete treatments and recommend one; do not make a novice's selection a prerequisite for progress. For surface polish, the one-time multiple-choice step in the route above is the allowed exception: it always carries a recommendation and never blocks work.
+Continue with authorized implementation after the brief. Pause only for a required unresolved decision, an explicit request to review the direction first, or a project rule requiring a mockup before a direction change. If alternatives materially help, show a small number of concrete treatments and recommend one; do not make a novice's selection a prerequisite for progress.
 
 When the user shows a reference and asks what makes it work (“이거 뭐라고 해?”), name the technique and its parameters, such as data-mark styling with a tonal gradient and rounded data end, and apply the principle in the project's own palette; do not copy the reference.
 
 ## 3. Implement a coherent treatment
 
-For accepted analytical screens, use [visualization craft](references/visualization-craft.md) for color roles, type roles, chart layers, labels, and selected states. Use [visual craft](references/visual-craft.md) to judge the whole screen, not just token consistency. Commit to a treatment that fits the product; more whitespace, gradients, rounded cards, or a fashionable palette do not establish quality by themselves. Color, gradients, and shadows never fix a hierarchy problem, but once the hierarchy works they are a required surface layer rather than decoration; add no ornament that attaches to no content. When a skewed count axis crowds most marks into one side, use a clearly labeled log scale.
+For accepted analytical screens, use [visualization craft](references/visualization-craft.md) for color roles, type roles, chart layers, labels, and selected states. Use [visual craft](references/visual-craft.md) to judge the whole screen, not just token consistency. Commit to a treatment that fits the product; more whitespace, gradients, rounded cards, or a fashionable palette do not establish quality by themselves. Use light, gradients, and shadows only where they improve this screen and project rules permit them. A log scale changes the chart's reading: consider it only when representation changes are in scope, the data supports it, and the axis clearly explains it. Preserve an accepted scale when the user has asked only for surface polish.
 
 When structural changes are in scope, name the question each representation answers and use [chart selection](references/chart-selection.md) to keep, replace, simplify, or remove it. Use [dashboard patterns](references/dashboard-patterns.md) for useful domain arrangements rather than fixed templates. Explain the new screen in reading order before implementing it.
 

@@ -212,7 +212,7 @@
       "prompt": "The user has accepted the layout of a review-analytics dashboard (headline claim, priority matrix, topic inspector). They say only: 시각화 폴리싱해줘. The rendered screen uses flat white, grey borders, solid-color bars, small dots, and four black buttons.",
       "expected_behavior": [
         "Keep the structure, data, and copy; do not reopen the layout.",
-        "Address all eight surface layers (canvas and light, surface and elevation, type and readability, color, data marks, details, emphasis, motion) with concrete values, or state why a layer needs no change.",
+        "Inspect the surface layers as a whole, then make coordinated changes where the observed screen needs them; leave working layers intact.",
         "Do not end after one or two property changes such as tick counts or border tweaks.",
         "Avoid ornaments that attach to no content, such as a decorative logo mark.",
         "Measure and render before and after; report in plain words and ask for a one-word reaction."
@@ -220,13 +220,12 @@
     },
     {
       "id": 22,
-      "name": "no-taste-file-recommends-then-offers-choices",
-      "prompt": "A user who says they do not know design asks to make an analytics screen look premium. The project has no taste file or design tokens beyond the current CSS. Decide what to ask before polishing.",
+      "name": "no-taste-file-still-proceeds",
+      "prompt": "A user who says they do not know design asks to make an analytics screen look premium. The project has no taste file or design tokens beyond the current CSS. Decide how to proceed before polishing.",
       "expected_behavior": [
-        "Pick a recommended direction from the screen and task first, then offer it once as at most three multiple-choice questions (brightness, mood, intensity) with the recommendation marked, instead of asking the user to describe the design.",
-        "If the user says to decide, skips the questions, or cannot be asked, proceed with the recommendation; the questions never block work.",
-        "Start from the matching preset and record the answers (or that the recommendation was used) and the chosen values in a project taste file.",
-        "Do not repeat the questions in later passes once the taste file exists."
+        "Inspect the screen and project rules, then recommend one concrete direction in plain language without requiring the user to describe the design.",
+        "Proceed with authorized work when the user delegates the choice; ask only for a consequential unresolved product fact.",
+        "Treat presets as optional examples and do not create a taste file merely because none exists."
       ]
     },
     {
@@ -236,7 +235,7 @@
       "expected_behavior": [
         "Recognize the plateau and stop further local tweaks.",
         "Produce a layer-toggle preview or two to three visually distinct variants of the same screen and data for the user to choose from.",
-        "Record the choice in the taste file and apply it across all layers."
+        "Recommend one variant and record a durable preference only if the project already keeps such a record or the user requests one."
       ]
     },
     {
@@ -246,7 +245,7 @@
       "expected_behavior": [
         "Name the technique (data-mark styling: tonal gradient, rounded data end, faint track, capped bar width) in plain words.",
         "Apply the principle to the project's own bars and palette without copying the reference's colors, layout, or brand.",
-        "Keep data values and bar heights unchanged and add the technique to the taste file vocabulary."
+        "Keep data values and bar heights unchanged; record the technique only if the project already maintains a design vocabulary or the user requests one."
       ]
     },
     {
@@ -286,9 +285,9 @@
       "prompt": "In a priority matrix, mention counts range from 20 to 121 on a linear 0–150 axis, so nine of thirteen topics sit in the left quarter while the right is mostly empty. The context dots are small grey circles and the highlighted dots use a glossy sphere gradient. The user says the overall proportion is wrong and the circles look poor.",
       "expected_behavior": [
         "Diagnose the skewed count axis as the cause of the crowding rather than only enlarging dots.",
-        "Propose a log scale (or another honest transform) for the count axis, labeled clearly on the axis, keeping thresholds and data values unchanged.",
+        "Check whether the chart definition and task permit a scale change; if so, propose a labeled log scale or another honest transform separately from marker styling.",
         "Redesign markers with a clear hierarchy, such as zone-tinted hollow rings for context and solid highlighted points with a white ring, without glossy or skeuomorphic effects.",
-        "Re-render and check label collisions after the scale change."
+        "If the scale changes, re-render and check interpretation and label collisions; otherwise improve marker legibility within the accepted scale."
       ]
     },
     {
@@ -299,7 +298,7 @@
         "Read the project's instructions and design doc before implementing the preset.",
         "Replace banned treatments with the nearest allowed form (neutral shadows, no colored glow, opaque chrome) and rerun the detector until the files report 0.",
         "Compare rendered-page findings against the unchanged base, and fix only the new ones.",
-        "Apply the user-approved change to the documented pane rule only together with an update to that document, and tell the user which rule changed."
+        "Keep the documented pane rule unless changing it is within the user's requested scope; surface the conflict for a product decision rather than silently rewriting project rules."
       ]
     },
     {
@@ -364,6 +363,28 @@
         "Recommend and implement a stronger task-specific type/annotation treatment without asking the user to name a style or supply an example.",
         "Preserve accepted composition, useful density, and correct data meanings instead of using unrelated decoration as a default fix.",
         "Render again and assess the visible result; do not claim the response's design explanation proves the treatment worked."
+      ]
+    },
+    {
+      "id": 36,
+      "name": "accepted-review-dashboard-project-rules",
+      "prompt": "A Korean AI review-analysis dashboard has an accepted composition: a takeaway, one IPA-style chart with documented axes, and an evidence panel. Its AGENTS.md bans colored glows, decorative gloss, thin borders plus wide shadows, and text under 13px; it requires a mockup before any design-direction change and rendered checks at desktop and mobile sizes. The project design document fixes data meanings, semantic red/blue, and an intentionally conditional log axis. The user has no visual references and says: 네가 이 화면을 폴리싱해줘. You are improving the skill's decision process before touching the application. What should it do?",
+      "expected_behavior": [
+        "Read the project's instructions and design document first, then inspect the current screen and recommend a compliant direction without asking the user to supply taste or references.",
+        "Review all relevant surface layers but change only those with observed problems; do not impose glows, gradients, motion, a new taste file, or preset values by quota.",
+        "Treat chart axes, scale conditions, coordinate and size meanings, and accepted composition as protected; do not force a log scale as a cosmetic fix.",
+        "If the direction itself changes, prepare the mockup required by the project before changing application code, and distinguish that decision from routine polish.",
+        "Do not modify the application during this skill-preflight request; explain what remains to verify on real rendered desktop/mobile screens."
+      ]
+    },
+    {
+      "id": 37,
+      "name": "one-good-layer-needs-no-change",
+      "prompt": "An accepted analytics screen already has readable type, semantic colors, and excellent hover/keyboard feedback. A rendered review shows only inconsistent card edges and competing chart annotations. The user asks for visual polish and delegates the design choices. Decide what to change and how to verify it.",
+      "expected_behavior": [
+        "Inspect the whole surface but focus implementation on card alignment and annotation emphasis because those are the observed weaknesses.",
+        "Leave working typography, semantic colors, and interaction response intact; do not add animation or a taste questionnaire to satisfy a fixed checklist.",
+        "Show the rendered before/after at relevant viewports and check affected behavior; distinguish verified improvement from source-only claims."
       ]
     }
   ]

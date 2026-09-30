@@ -7,7 +7,7 @@
 - 설치: 커밋된 스킬 폴더 전체를 설치합니다. `references`도 함께 갱신합니다.
 - 추적: 설치 폴더의 `.codex-skill-install.json`에 저장소, 버전, 채널, 커밋, 파일별 SHA-256을 기록합니다.
 
-새 환경에서는 `$skill-installer`에게 `skills/game-tool-visual-director` 설치를 요청할 수 있습니다. 이후 이 저장소의 관리 스크립트로 전환하려면 첫 갱신에 `--adopt`를 명시합니다.
+새 환경에서는 `$skill-installer`에게 필요한 폴더(`skills/visual-design-director` 또는 `skills/game-tool-visual-director`) 설치를 요청할 수 있습니다. 이후 이 저장소의 관리 스크립트로 전환하려면 첫 갱신에 `--adopt`를 명시합니다. 관리 스크립트의 `--skill`로 설치하거나 갱신할 스킬을 선택합니다.
 
 기본 설치 위치는 기존 `$CODEX_HOME/skills` 또는 `~/.codex/skills`의 설치본을 우선 재사용합니다. 새 설치는 `~/.agents/skills`를 사용합니다. 별도 경로는 `--dest`로 스킬들을 담는 상위 폴더를 지정합니다. 같은 이름을 여러 탐색 경로에 중복 설치하지 않습니다. Python 3.10 이상과 Git만 필요합니다.
 

@@ -4,7 +4,12 @@
   "skills": {
     "game-tool-visual-director": {
       "path": "skills/game-tool-visual-director",
-      "version": "4.1.0",
+      "version": "4.1.1",
+      "channel": "candidate"
+    },
+    "visual-design-director": {
+      "path": "skills/visual-design-director",
+      "version": "1.0.0",
       "channel": "candidate"
     }
   }

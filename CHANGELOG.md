@@ -1,5 +1,20 @@
 # Changes
 
+## visual-design-director 1.0.0 — candidate — 2026-10-01
+
+- Add cross-medium visual direction for software, sites, portfolios, presentations, and other artifacts when the user cannot describe the design problem or provide references.
+- Translate inspected references into mechanisms with fit and adaptation boundaries; do not treat galleries or login-only surfaces as verified product UI.
+- Route verification by medium and judge communication separately from craft. Add focused regression scenarios for no-reference requests, host constraints, PPT, critique-only scope, and inaccessible examples.
+- Retain `game-tool-visual-director` as the specialized analytical UI skill. Reference research and package checks do not establish better rendered output; this release remains candidate.
+
+## 4.1.1 — candidate — 2026-10-01
+
+- Make surface polish evidence-led: inspect all eight layers but change only those that weaken the actual screen, preserving useful working treatments.
+- Stop default taste questions and automatic taste-file creation when the user delegates design judgment. Keep presets as optional examples.
+- Separate chart-scale changes from styling; a skewed distribution alone does not authorize changing an accepted axis to log.
+- Respect project rules requiring a design mockup before a direction change, and do not silently rewrite conflicting rules.
+- Add a project-grounded preflight and focused regression scenarios. No claim of improved UI output is made without a candidate run on the actual application.
+
 ## 4.1.0 — candidate — 2026-09-28
 
 Combines 3.3.0 (design ownership without references) and 4.0.0 (surface polish route).
