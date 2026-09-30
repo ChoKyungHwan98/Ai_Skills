@@ -1,5 +1,18 @@
 # Ai_Skills
 
+## visual-design-director
+
+프로그램 도구, 사이트, 포트폴리오, PPT 등 매체를 가리지 않고 디자인 방향을 잡고 다듬는 범용 스킬입니다. 디자인 용어나 레퍼런스를 몰라도 현재 결과물과 목적을 보고 한 방향을 추천합니다. 필요한 레퍼런스는 직접 찾아 **어떤 원리가 왜 맞는지** 설명하고, 원본의 브랜드나 팔레트를 그대로 옮기지 않습니다. 수정 요청이면 해당 매체의 실제 결과물을 확인하고, 분석만 요청하면 수정하지 않습니다.
+
+```text
+visual-design-director로 이 결과물을 보고 다듬어줘.
+디자인은 잘 모르고 레퍼런스도 없어. 현재 구성과 내용은 유지해.
+```
+
+PPT라면 “슬라이드 순서와 내용은 유지해”처럼 보존할 부분만 알려주면 됩니다. 화면·파일의 목적이나 대상이 결과를 크게 바꾸는데 자료에서 알 수 없을 때만 간단히 묻습니다. [레퍼런스 조사법과 선별 사례](skills/visual-design-director/references/reference-research.md), [매체별 실제 결과물 확인 기준](skills/visual-design-director/references/medium-checks.md)이 포함됩니다.
+
+아래 `game-tool-visual-director`는 게임 기획·분석 도구의 데이터 표현과 밀도 높은 작업 흐름을 다루는 전문 스킬로 유지합니다. 분석기에는 전문 스킬을, PPT나 일반 사이트에는 범용 스킬을 명시하면 됩니다.
+
 ## game-tool-visual-director
 
 정보가 많은 게임 기획 도구, 분석 대시보드, 에디터, 포트폴리오 도구, AI 생산성 도구의 화면을 진단하고 재설계·폴리싱하는 스킬입니다. 디자인 용어를 모르거나 레퍼런스가 없어도 사용할 수 있습니다. 현재 화면과 사용 목적을 바탕으로 스킬이 문제를 찾고, 구체적인 디자인 방향을 추천하며, 요청한 범위에서 구현과 실제 화면 검증까지 진행합니다.
@@ -54,9 +67,12 @@ python scripts/manage_skills.py status
 
 # GitHub main을 가져와 설치/업데이트 (현재 main은 candidate라 명시적으로 허용)
 python scripts/manage_skills.py sync --ref origin/main --fetch --allow-candidate
+
+# 병합 전 이 브랜치의 범용 스킬을 별도로 시험 (커밋 후)
+python scripts/manage_skills.py sync --skill visual-design-director --ref HEAD --allow-candidate
 ```
 
-현재 main의 `4.1.0`은 candidate입니다. `4.1.1` 수정안도 병합 전 candidate로 검토 중입니다. main의 후보를 시험하려면 `--allow-candidate`를 명시합니다. 기존 비관리 설치본을 처음 전환할 때만 `--adopt`를 추가하며, 원본 설치본 전체를 백업합니다. 관리된 설치본의 직접 수정은 덮어쓰지 않습니다. 안정 버전으로 승격한 뒤에는 `sync --ref origin/main --fetch`만으로 갱신할 수 있습니다.
+현재 main의 `game-tool-visual-director` 4.1.0은 candidate입니다. 이 브랜치의 4.1.1과 새 `visual-design-director` 1.0.0도 병합 전 candidate입니다. main의 후보를 시험하려면 `--allow-candidate`를 명시합니다. 기존 비관리 설치본을 처음 전환할 때만 `--adopt`를 추가하며, 원본 설치본 전체를 백업합니다. 관리된 설치본의 직접 수정은 덮어쓰지 않습니다. 안정 버전으로 승격한 뒤에는 `sync --ref origin/main --fetch`만으로 갱신할 수 있습니다.
 
 시각화 지침에는 [표면 폴리싱 여덟 층](skills/game-tool-visual-director/references/surface-polish.md), [taste 파일과 프리셋](skills/game-tool-visual-director/references/taste-presets.md), [색상·타이포·차트 표현](skills/game-tool-visual-director/references/visualization-craft.md), [이전/후보 버전 결과 평가](skills/game-tool-visual-director/references/visual-evaluation.md), [선별한 GitHub 출처와 적용 범위](skills/game-tool-visual-director/references/upstream-sources.md)가 포함됩니다.
 

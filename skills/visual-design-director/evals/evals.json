@@ -1,0 +1,56 @@
+{
+  "skill_name": "visual-design-director",
+  "evaluation_note": "These scenarios specify behavior to inspect. They are not evidence that the skill improves rendered output.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "no-reference-portfolio",
+      "prompt": "A user says: '포트폴리오 사이트가 밋밋한데 디자인을 설명할 자신도, 레퍼런스도 없어. 직접 보고 다듬어줘.' The existing site and its project content are available. What do you do?",
+      "expected_behavior": [
+        "Inspect the current site, audience, project evidence, and existing rules before choosing a direction.",
+        "Take responsibility for a concrete recommendation instead of requiring a mood board or taste quiz.",
+        "Implement within the request, render responsive results, and explain visible changes in plain language."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "dark-reference-bright-host",
+      "prompt": "A bright analytics tool lives inside a host studio with fixed light surfaces and a blue accent. The user provides a dark Linear screenshot and asks for that level of polish, not a dark theme. Explain and perform the adaptation.",
+      "expected_behavior": [
+        "Identify a transferable mechanism such as navigation restraint, alignment, or hierarchy from the actual reference.",
+        "Keep host brightness and tokens rather than importing the reference palette or shell.",
+        "Inspect the resulting tool in its host and preserve chart meaning and task flow."
+      ]
+    },
+    {
+      "id": 3,
+      "name": "ppt-without-style-vocabulary",
+      "prompt": "A user has a twelve-slide project review deck with the correct content and says: 'PPT가 아마추어 같아. 뭘 고쳐야 하는지는 모르겠고, 구성은 유지해.' The deck is available.",
+      "expected_behavior": [
+        "Inspect rendered slides and identify communication versus craft issues without assuming a website layout applies.",
+        "Preserve accepted slide order and factual content, choose a coherent visual system, and edit the deck in its native format.",
+        "Render every changed slide, check deck rhythm and legibility, then report what remains unverified."
+      ]
+    },
+    {
+      "id": 4,
+      "name": "critique-only-reference-boundary",
+      "prompt": "The user gives a gallery link and says: '이 디자인에서 우리 사이트에 참고할 점만 분석해줘. 코드는 건드리지 마.' The gallery shows thumbnails but not the full referenced site.",
+      "expected_behavior": [
+        "Inspect the actual referenced site when available and distinguish observed detail from gallery inference.",
+        "Name a few transferable mechanisms and adaptation boundaries for the user's site.",
+        "Do not edit code or present a copied palette/layout as the recommendation."
+      ]
+    },
+    {
+      "id": 5,
+      "name": "login-only-dashboard-source",
+      "prompt": "A suggested dashboard reference requires login, and only its marketing home page is public. The user asks you to make their dashboard 'like its KPI screen.' How do you proceed?",
+      "expected_behavior": [
+        "Do not claim to have inspected the hidden KPI screen.",
+        "Find an accessible official demo, documentation, or another comparable example if reference research matters.",
+        "Base the design direction on the user's actual dashboard and clearly state the evidence limit."
+      ]
+    }
+  ]
+}
